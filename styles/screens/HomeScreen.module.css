@@ -1,0 +1,321 @@
+/* Reset styles */
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* Global styles */
+  /* body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  } */
+  
+  .a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Layout styles */
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+    /* background-color: #1d1f27; */
+  }
+  
+  .header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav li:not(:last-child) {
+    margin-right: 1rem;
+  }
+  
+  .nav a {
+    font-weight: bold;
+  }
+  
+  .main {
+    flex-grow: 1;
+  }
+  
+  .hero {
+    background-color: #007bff;
+    color: #fff;
+    padding: 4rem;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: #007bff;
+    font-weight: bold;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .hero a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4rem;
+  }
+  
+  .feature {
+    flex-basis: calc(33.33% - 2rem);
+    margin-bottom: 2rem;
+  }
+  
+  .feature img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  .feature h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feature p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .feature a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .feature a:hover {
+    background-color: #fff;
+    color: #007bff;
+  }
+  
+  .footer {
+    background-color: black;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+  }
+
+  .getStarted {
+    background-color: #f84c4c;
+    color: #fff; 
+    width: 7rem;
+    height: 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 0.5px;
+  }
+
+  .getStarted:hover {
+    transform: scale(1.1);
+    background-color: #f9c651;
+    color: black;
+    border: 2px solid white;
+  }
+
+  .nextButton {
+    background-color: transparent;
+    color: white;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nextButton:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+  }
+
+  .divOneContent {
+    position: absolute;
+    color: white;
+  }
+
+  .textOne {
+    background-image: linear-gradient(to right, #f84c4c, #f9c651);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 4.5rem;
+  }
+
+  .blurredImage {
+    object-fit: cover;
+    filter: blur(7px);
+  }  
+
+  .divButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .wholeHeightDiv {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .wholeHeightDivTwo {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #1d1f27;
+  }
+
+  .textHeading {
+    font-size: 2.5rem;
+  }
+
+  .subtextHeading {
+    font-size: 1.5rem;
+  }
+
+  .cardHolder {
+    display: flex;
+    height: 30rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 30%;
+    background-color: transparent;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: white;
+  }
+
+  .cardTitle {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .cardText {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .learnMore {
+    background-color: #f84c4c;
+    color: #fff; 
+    width: 7rem;
+    height: 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
+  }
+
+  .learnMore:hover {
+    transform: scale(1.1);
+    background-color: #f9c651;
+    color: black;
+    border: 2px solid white;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .textHeading {
+        font-size: 1.3rem;
+    }
+    .textOne {
+        font-size: 2.4rem;
+    }
+    .card {
+        width: 100%;
+    }
+    .cardHolder {
+        height: 15rem;
+        margin-top: 0;
+    }
+    .cardTitle {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+    .subtextHeading {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+    }
+    .wholeHeightDivTwo {
+        height: 70rem;
+        justify-content: start;
+        align-items: start;
+    }
+    .nextButton {
+        margin-bottom: 1rem;
+    }
+    .learnMore {
+        margin-bottom: 1.5rem;
+    }
+  }
