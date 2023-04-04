@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Agency from "../../../../models/agency";
+import User from "../../../../models/user";
 import connectDB from "../../db";
 
 
@@ -10,29 +10,29 @@ export default async function login(req, res) {
     try {
       const { email, password } = req.body;
   
-      const agency = await Agency.findOne({ email });
+      const user = await User.findOne({ email });
   
-      if (!agency) {
+      if (!user) {
         return res.status(400).json({
           status: 400,
-          message: "Agency with this email does not exist",
+          message: "User with this email does not exist",
         });
       }
   
-      if (!bcryptjs.compareSync(password, agency.password)) {
+      if (!bcryptjs.compareSync(password, user.password)) {
         return res.status(400).json({
           status: 400,
           message: "Incorrect password",
         });
       }
   
-      const token = jwt.sign({ id: agency._id }, "passwordKey");
+      const token = jwt.sign({ id: user._id }, "passwordKey");
   
       res.json({
         token,
         status: 200,
         message: "success",
-        data: { ...agency._doc },
+        data: { ...user._doc },
       });
     } catch (e) {
       res.status(500).json({

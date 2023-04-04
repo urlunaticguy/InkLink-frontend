@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import Agency from "../../../../models/agency";
+import User from "../../../../models/user";
 import connectDB from "../../db";
 
 export default async function register(req, res) {
@@ -15,12 +15,12 @@ export default async function register(req, res) {
     console.log(req.body);
 
 
-    const existingAgency = await Agency.findOne({ email });
+    const existingUser = await User.findOne({ email });
 
-    if (existingAgency) {
+    if (existingUser) {
       return res
         .status(400) //Bad request ==> client error status code
-        .json({ status: 400, message: "Agency with same email already exists!" });
+        .json({ status: 400, message: "User with same email already exists!" });
       //this will return the status code as 400 and the message
     }
     //200 - OK
@@ -34,18 +34,18 @@ if (!password || typeof password !== "string") {
 
     const hashedPassword = await bcryptjs.hash(password, saltRounds);
 
-    let agency = new Agency({
+    let user = new User({
       email,
       password: hashedPassword,
       image,
       name,
     });
 
-    agency = await agency.save();
+    user = await user.save();
 
     res.status(200).json({
       status: 200,
       message: "success",
-      data: agency,
+      data: user,
     });
 }

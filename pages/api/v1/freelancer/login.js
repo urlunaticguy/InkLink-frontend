@@ -1,7 +1,7 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Agency from "../../../../models/agency";
 import connectDB from "../../db";
+import Freelancer from "../../../../models/freelancer";
 
 
 export default async function login(req, res) {
@@ -10,29 +10,29 @@ export default async function login(req, res) {
     try {
       const { email, password } = req.body;
   
-      const agency = await Agency.findOne({ email });
+      const freelancer = await Freelancer.findOne({ email });
   
-      if (!agency) {
+      if (!freelancer) {
         return res.status(400).json({
           status: 400,
-          message: "Agency with this email does not exist",
+          message: "Freelancer with this email does not exist",
         });
       }
   
-      if (!bcryptjs.compareSync(password, agency.password)) {
+      if (!bcryptjs.compareSync(password, freelancer.password)) {
         return res.status(400).json({
           status: 400,
           message: "Incorrect password",
         });
       }
   
-      const token = jwt.sign({ id: agency._id }, "passwordKey");
+      const token = jwt.sign({ id: freelancer._id }, "passwordKey");
   
       res.json({
         token,
         status: 200,
         message: "success",
-        data: { ...agency._doc },
+        data: { ...freelancer._doc },
       });
     } catch (e) {
       res.status(500).json({
