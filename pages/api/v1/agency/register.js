@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
-import Agency from "../../../models/agency";
-import connectDB from "../db";
+import Agency from "../../../../models/agency";
+import connectDB from "../../db";
 
 export default async function handler(req, res) {
   const { email, password, name, image } = req.body;
