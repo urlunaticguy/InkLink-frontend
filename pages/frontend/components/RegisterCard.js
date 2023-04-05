@@ -40,6 +40,7 @@ function RegisterCard() {
     try {
       const response = await axios.post(API_URL_CLIENT_REGISTER, postData);
       console.log(response.data);
+      localStorage.setItem("isSignedIn", true);
       if (response.data.message == "success") {
         router.push("/frontend/screens/AgencyHomeScreen");
       }
