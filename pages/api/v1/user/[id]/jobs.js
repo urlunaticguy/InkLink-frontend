@@ -1,11 +1,11 @@
 import connectDB from "@/pages/api/db";
-import User from "@/models/user";
-import {jobSchema, Job} from "@/models/job";
+import User from "../../../../../models/user";
+import {jobSchema, Job} from "../../../../../models/job";
 
 export default async function postJob(req, res) {
 
   await connectDB();
-  
+
   try {
     const { title, details, salary, frequency, location, type, tags } =
       req.body;
