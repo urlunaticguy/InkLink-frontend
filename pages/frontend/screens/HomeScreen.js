@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "@/styles/screens/HomeScreen.module.css";
 import { Roboto } from "next/font/google";
 
@@ -41,7 +42,9 @@ function HomeScreen() {
             <h1 className={styles.textOne}>We back the writers of</h1>
             <h1 className={styles.textOne}>the future.</h1>
             <div className={styles.divButtons}>
-              <button className={styles.getStarted}>Get Started</button>
+              <button className={styles.getStarted}>
+                <Link href="/frontend/screens/RegisterScreen">Get Started</Link>
+              </button>
               <div onClick={clickHandler1} className={styles.nextButton}>
                 next
               </div>
@@ -53,12 +56,6 @@ function HomeScreen() {
           className={[styles.wholeHeightDivTwo, "div2"].join(" ")}
           ref={divRefOne}
         >
-          {/* <Image
-            className={styles.blurredImage}
-            fill
-            src="/assets/images/homepagebackground.png"
-            alt="hpbg"
-          /> */}
           <div className={[roboto.className, styles.divOneContent].join(" ")}>
             <h1 className={styles.subtextHeading}>
               The ultimate platform for freelancers, clients, and agencies to
@@ -109,9 +106,6 @@ function HomeScreen() {
           </div>
         </div>
       </main>
-      {/* <footer className={styles.footer}>
-        <p>&copy; InkLink 2023</p>
-      </footer> */}
     </div>
   );
 }
