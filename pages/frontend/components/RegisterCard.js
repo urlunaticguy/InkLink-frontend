@@ -30,9 +30,7 @@ function RegisterCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const API_URL_CLIENT_REGISTER =
-    //   "https://ink-link-frontend.vercel.app/api/v1/agency/register";
-    const API_URL_CLIENT_REGISTER = "/api/v1/agency/register";
+    const API_URL_CLIENT_REGISTER = `/api/v1/${selectedChip}/register`;
     const postData = {
       name: name,
       email: email,
@@ -42,7 +40,7 @@ function RegisterCard() {
       const response = await axios.post(API_URL_CLIENT_REGISTER, postData);
       console.log(response.data);
       localStorage.setItem("isSignedIn", true);
-      localStorage.setItem("userType", "agency");
+      localStorage.setItem("userType", selectedChip);
       if (response.data.message == "success") {
         router.push("/frontend/screens/AgencyHomeScreen");
       }
@@ -76,18 +74,18 @@ function RegisterCard() {
         <div>
           <GoogleChip
             label="Agency"
-            selected={selectedChip === "Agency"}
-            onClick={() => handleChipClick("Agency")}
+            selected={selectedChip === "agency"}
+            onClick={() => handleChipClick("agency")}
           />
           <GoogleChip
-            label="Client"
-            selected={selectedChip === "Client"}
-            onClick={() => handleChipClick("Client")}
+            label="User"
+            selected={selectedChip === "user"}
+            onClick={() => handleChipClick("user")}
           />
           <GoogleChip
             label="Freelancer"
-            selected={selectedChip === "Freelancer"}
-            onClick={() => handleChipClick("Freelancer")}
+            selected={selectedChip === "freelancer"}
+            onClick={() => handleChipClick("freelancer")}
           />
         </div>
         <GoogleButton type="submit" label="Submit" disabled={!selectedChip} />

@@ -17,7 +17,7 @@ function RegisterScreen() {
       const type = localStorage.getItem("userType");
       if (type == "agency") {
         setIsAgency(true);
-      } else if (type == "client") {
+      } else if (type == "user") {
         setIsClient(true);
       }
     }
