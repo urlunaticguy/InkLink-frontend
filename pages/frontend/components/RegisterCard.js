@@ -30,8 +30,9 @@ function RegisterCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const API_URL_CLIENT_REGISTER =
-      "https://ink-link-frontend.vercel.app/api/v1/agency/register";
+    // const API_URL_CLIENT_REGISTER =
+    //   "https://ink-link-frontend.vercel.app/api/v1/agency/register";
+    const API_URL_CLIENT_REGISTER = "/api/v1/agency/register";
     const postData = {
       name: name,
       email: email,
@@ -41,7 +42,7 @@ function RegisterCard() {
       const response = await axios.post(API_URL_CLIENT_REGISTER, postData);
       console.log(response.data);
       localStorage.setItem("isSignedIn", true);
-      localStorage.setItem("data", "hello boy souvik");
+      localStorage.setItem("userType", "agency");
       if (response.data.message == "success") {
         router.push("/frontend/screens/AgencyHomeScreen");
       }
