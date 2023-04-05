@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs";
 import Freelancer from "../../../../models/freelancer";
 import connectDB from "../../db";
+import jwt from "jsonwebtoken";
 
 export default async function register(req, res) {
   const { email, password, name, image } = req.body;
