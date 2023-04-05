@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/screens/RegisterScreen.module.css";
 import RegisterScreenCard from "../components/RegisterScreenCard";
 
 function RegisterScreen() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    const flag = localStorage.getItem("isSignedIn");
+    if (!flag == null || !flag == undefined) {
+      setIsSignedIn(true);
+    }
+  }, []);
+
   return (
-    <div className={styles.mainDiv}>
-      <RegisterScreenCard
-        parentStyleClass={styles.parentCard}
-        formStyleClass={styles.formCard}
-        imageStyleClass={styles.imageCard}
-      />
-    </div>
+    <>
+      {isSignedIn ? (
+        <AgencyHomeScreen />
+      ) : (
+        <div className={styles.mainDiv}>
+          <RegisterScreenCard
+            parentStyleClass={styles.parentCard}
+            formStyleClass={styles.formCard}
+            imageStyleClass={styles.imageCard}
+          />
+        </div>
+      )}
+    </>
   );
 }
 

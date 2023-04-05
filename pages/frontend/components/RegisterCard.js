@@ -2,19 +2,11 @@ import React, { useState } from "react";
 import styles from "@/styles/components/RegisterCard.module.css";
 import GoogleChip from "./Google Material Design/GoogleChip";
 import GoogleButton from "./Google Material Design/GoogleButton";
-// import postCall from "../swr/postCall";
-// import useSWR from "swr";
 import axios from "axios";
-
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { useRouter } from "next/router";
 
 function RegisterCard() {
-  // api call to register will happen here
-  //   const { data, error } = useSWR('/api/profile-data', fetcher)
-  //   const { data, error } = useSWR(
-  //     "https://ink-link.vercel.app/api/v1/client/signup",
-  //     fetcher
-  //   );
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,24 +28,6 @@ function RegisterCard() {
     setSelectedChip(chip === selectedChip ? null : chip);
   };
 
-  //   const postCall = async (url, data) => {
-  //     const { data: response, error } = useSWR(url, {
-  //       method: "POST",
-  //       body: JSON.stringify(data),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     if (error) {
-  //       console.error(error);
-  //     }
-  //     if (response) {
-  //       console.log(response);
-  //       console.log("HELLO SOUVIK");
-  //     }
-  //     return { response, error };
-  //   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const API_URL_CLIENT_REGISTER =
@@ -66,6 +40,9 @@ function RegisterCard() {
     try {
       const response = await axios.post(API_URL_CLIENT_REGISTER, postData);
       console.log(response.data);
+      if (response.data.message == "success") {
+        router.push("/frontend/screens/AgencyHomeScreen");
+      }
     } catch (error) {
       console.error(error);
     }
