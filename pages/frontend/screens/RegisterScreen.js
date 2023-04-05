@@ -7,9 +7,10 @@ function RegisterScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   useEffect(() => {
     const flag = localStorage.getItem("isSignedIn");
-    if (!flag == null || !flag == undefined) {
+    if (!(flag == null)) {
       setIsSignedIn(true);
     }
+    console.log(localStorage.getItem("data"));
   }, []);
 
   return (
