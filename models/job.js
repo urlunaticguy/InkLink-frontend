@@ -1,9 +1,5 @@
 import mongoose from "mongoose";
 
-// const tagsSchema = mongoose.Schema({
-  
-// });
-
 const jobSchema = mongoose.Schema({
   title: {
     type: String,
