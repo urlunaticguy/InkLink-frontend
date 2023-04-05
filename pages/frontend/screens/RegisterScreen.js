@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "@/styles/screens/RegisterScreen.module.css";
 import RegisterScreenCard from "../components/RegisterScreenCard";
+import AgencyHomeScreen from "./AgencyHomeScreen";
 
 function RegisterScreen() {
   const [isSignedIn, setIsSignedIn] = useState(false);
