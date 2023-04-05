@@ -15,6 +15,11 @@ const jobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'hold'],
+    required: true
+  },
   salary: {
     type: Number,
     required: true,
@@ -38,10 +43,24 @@ const jobSchema = mongoose.Schema({
   tags: {
     type: [String],
     trim: true,
-  }
+  },
+  applicants:{
+    type: [String],
+    default: []
+  },
+  created_on: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  updated_on: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
 });
 
 
-// const Job = mongoose.models.Job || mongoose.model("Job", jobSchema);
+const Job = mongoose.models.Job || mongoose.model("Job", jobSchema);
 
-export default jobSchema;
+export { jobSchema, Job };

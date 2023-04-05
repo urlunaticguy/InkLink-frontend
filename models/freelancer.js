@@ -36,6 +36,31 @@ const freelancerSchema = mongoose.Schema({
       message: "Please enter a long password",
     },
   },
+  schedule: [
+    {
+      name: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      start: {
+        type: Date,
+        required: true,
+      },
+      end: {
+        type: Date,
+        required: true,
+      },
+      duration: {
+        type: Date,
+        required: true,
+      },
+      dependencies: {
+        type: [String],
+        default: [],
+      },
+    },
+  ],
 });
 
 

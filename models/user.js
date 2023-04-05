@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import jobSchema from "./job";
+import {jobSchema, Job} from "./job";
 
 const userSchema = mongoose.Schema({
   name: {
@@ -37,26 +37,7 @@ const userSchema = mongoose.Schema({
       message: "Please enter a long password",
     },
   },
-  jobs: [{
-    job: {
-      type: jobSchema, // reference the jobSchema
-      required: true,
-    },
-    applicants:{
-      type: [String],
-      default: []
-    },
-    created_on: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
-    updated_on: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
-  }],
+  jobs: [jobSchema],
   tags: {
     type: [String],
     trim: true,
