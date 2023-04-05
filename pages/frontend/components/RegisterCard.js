@@ -42,12 +42,17 @@ function RegisterCard() {
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);
       if (response.data.message == "success") {
-        router.push("/frontend/screens/AgencyHomeScreen");
+        if (selectedChip == "agency") {
+          router.push("/frontend/screens/AgencyHomeScreen");
+        } else if (selectedChip == "user") {
+          router.push("/frontend/screens/ClientHomeScreen");
+        } else {
+          router.push("/frontend/screens/FreelancerHomeScreen");
+        }
       }
     } catch (error) {
       console.error(error);
     }
-    console.log("HELLO SOUVIK");
   };
   return (
     <div>
