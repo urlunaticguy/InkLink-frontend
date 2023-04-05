@@ -1,7 +1,7 @@
 import connectDb from "../../../db";
 import Freelancer from "../../../../../models/freelancer";
 
-await connectDb();
+connectDb();
 
 export default async function addSchedule(req, res) {
   const { method } = req;
