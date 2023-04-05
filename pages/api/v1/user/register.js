@@ -48,6 +48,6 @@ export default async function register(req, res) {
     token,
     status: 200,
     message: "success",
-    data: agency,
+    data: user,
   });
 }

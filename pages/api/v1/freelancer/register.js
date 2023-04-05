@@ -15,8 +15,6 @@ export default async function register(req, res) {
       .json({ status: 500, message: "Error connecting to database" });
   }
 
-  console.log(req.body);
-
   const existingFreelancer = await Freelancer.findOne({ email });
 
   if (existingFreelancer) {
@@ -53,6 +51,6 @@ export default async function register(req, res) {
     token,
     status: 200,
     message: "success",
-    data: agency,
+    data: freelancer,
   });
 }
