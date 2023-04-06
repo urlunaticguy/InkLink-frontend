@@ -4,6 +4,7 @@ import GoogleChip from "./Google Material Design/GoogleChip";
 import GoogleButton from "./Google Material Design/GoogleButton";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function RegisterCard() {
   const router = useRouter();
@@ -95,6 +96,12 @@ function RegisterCard() {
         </div>
         <GoogleButton type="submit" label="Submit" disabled={!selectedChip} />
       </form>
+      <div>
+        <p>Already have an account?</p>
+        <Link href="/frontend/screens/LoginScreen">
+          <GoogleButton label="Login" />
+        </Link>
+      </div>
     </div>
   );
 }
