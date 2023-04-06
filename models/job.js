@@ -46,8 +46,6 @@ const jobSchema = mongoose.Schema({
   },
   created_on: {
     type: Date,
-    required: true,
-    default: Date.now,
   },
   updated_on: {
     type: Date,
