@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const agencySchema = new mongoose.Schema({
   name: {
@@ -9,7 +9,7 @@ const agencySchema = new mongoose.Schema({
   image: {
     type: String,
     trim: true,
-    default: "",
+    default: ""
   },
   email: {
     type: String,
@@ -47,9 +47,9 @@ const agencySchema = new mongoose.Schema({
   client_bookmarks: {
     type: [String],
     trim: true,
-  },
+  }
 });
 
-const Agency = mongoose.models.Agency || mongoose.model("Agency", agencySchema);
+const Agency = mongoose.models.Agency || mongoose.model('Agency', agencySchema);
 
 export default Agency;
