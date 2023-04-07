@@ -61,6 +61,10 @@ const freelancerSchema = mongoose.Schema({
       },
     },
   ],
+  role: {
+    type: String,
+    default: "freelancer"
+  },
 });
 
 
