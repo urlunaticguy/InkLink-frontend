@@ -57,6 +57,7 @@ export default async function postJob(req, res) {
           message: e.message,
         });
       }
+      return;
 
     case "GET":
       try {
@@ -78,12 +79,13 @@ export default async function postJob(req, res) {
           message: e.message,
         });
       }
+      return;
 
     default:
       res.status(405).json({
         status: 405,
         message: "Method not allowed",
       });
-      break;
+      return;
   }
 }
