@@ -39,14 +39,25 @@ const agencySchema = new mongoose.Schema({
   tags: {
     type: [String],
     trim: true,
+    default: []
   },
   freelancer_bookmarks: {
     type: [String],
     trim: true,
+    default: []
   },
   client_bookmarks: {
     type: [String],
     trim: true,
+    default: []
+  },
+  role: {
+    type: String,
+    default: "agency"
+  },
+  jobs_applied :{
+    type: [String],
+    default: []
   }
 });
 
