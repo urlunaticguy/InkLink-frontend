@@ -25,16 +25,18 @@ function LoginCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const API_URL_CLIENT_REGISTER = `/api/v1/${selectedChip}/login`;
+    const API_URL_LOGIN = `/api/v1/${selectedChip}/login`;
     const loginData = {
       email: email,
       password: password,
     };
     try {
-      const response = await axios.post(API_URL_CLIENT_REGISTER, loginData);
+      const response = await axios.post(API_URL_LOGIN, loginData);
       console.log(response.data);
+      const receivedData = response.data.data;
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);
+      localStorage.setItem("Mongo_ID", receivedData._id);
       if (response.data.message == "success") {
         if (selectedChip == "agency") {
           router.push("/frontend/screens/AgencyHomeScreen");

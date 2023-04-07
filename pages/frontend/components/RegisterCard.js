@@ -31,14 +31,14 @@ function RegisterCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const API_URL_CLIENT_REGISTER = `/api/v1/${selectedChip}/register`;
+    const API_URL_REGISTER = `/api/v1/${selectedChip}/register`;
     const postData = {
       name: name,
       email: email,
       password: password,
     };
     try {
-      const response = await axios.post(API_URL_CLIENT_REGISTER, postData);
+      const response = await axios.post(API_URL_REGISTER, postData);
       console.log(response.data);
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);
