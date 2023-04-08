@@ -11,6 +11,11 @@ const jobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  userId: {
+    type: String,
+    required: true,
+    default: ""
+  },
   status: {
     type: String,
     enum: ['active', 'inactive', 'hold'],
@@ -51,7 +56,7 @@ const jobSchema = mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now,
-  },
+  }
 });
 
 

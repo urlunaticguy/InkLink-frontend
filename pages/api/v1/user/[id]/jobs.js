@@ -1,13 +1,13 @@
 import connectDB from "@/pages/api/db";
 import User from "../../../../../models/user";
-import { jobSchema, Job } from "../../../../../models/job";
+import {Job, jobSchema} from "../../../../../models/job";
 
 connectDB();
 
 export default async function postJob(req, res) {
   const { method } = req;
 
-  const { id } = req.query;
+  const id = req.query.id;
 
   let user = await User.findById(id);
 
@@ -25,12 +25,15 @@ export default async function postJob(req, res) {
           req.body;
         if (!user.jobs) {
           user.jobs = [];
-        }
+        } 
 
-        const job = {
+        // console.log( user._id.toString());
+
+        let job = {
           title,
           details,
           salary,
+          userId: user._id.toString(),
           frequency,
           location,
           type,
@@ -41,10 +44,14 @@ export default async function postJob(req, res) {
         };
 
         user.jobs.push(job);
-        let savedJob = Job(job);
-        savedJob = await savedJob.save();
-
         const savedUser = await user.save();
+
+        job = new Job(job);
+
+        job._id = user.jobs[user.jobs.length - 1]._id;
+
+
+        await job.save();
 
         res.status(200).json({
           status: 200,
@@ -57,6 +64,7 @@ export default async function postJob(req, res) {
           message: e.message,
         });
       }
+      return;
 
     case "GET":
       try {
@@ -78,6 +86,7 @@ export default async function postJob(req, res) {
           message: e.message,
         });
       }
+      return;
 
     default:
       res.status(405).json({
