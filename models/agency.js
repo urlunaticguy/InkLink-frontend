@@ -64,3 +64,6 @@ const agencySchema = new mongoose.Schema({
 const Agency = mongoose.models.Agency || mongoose.model('Agency', agencySchema);
 
 export default Agency;
+
+
+  // "dev": "nodemon --watch .env.local --exec 'next dev'"
