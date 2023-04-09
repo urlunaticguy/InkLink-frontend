@@ -43,8 +43,6 @@ function ClientCreateJobCard() {
   };
 
   const handleSubmit = async (event) => {
-    // const { title, details, salary, frequency, location, type, tags, status } =
-    //       req.body;
     event.preventDefault();
     const user_id_mongo = localStorage.getItem("Mongo_ID");
     const API_URL_CLIENT_POSTJOB = `/api/v1/user/${user_id_mongo}/jobs`;

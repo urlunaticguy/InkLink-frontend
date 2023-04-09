@@ -16,6 +16,9 @@ function ClientHomeScreen() {
       <Link href="/frontend/screens/ClientScreens/CreateJobScreen">
         <GoogleButton label="POST A NEW REQUIREMENT" />
       </Link>
+      <Link href="/frontend/screens/ClientScreens/ClientJobsScreen">
+        <GoogleButton label="View my jobs" />
+      </Link>
       <GoogleButton onClick={handleLogout} label="Logout User" />
     </div>
   );
