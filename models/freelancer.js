@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Note, NoteSchema } from "./note";
 
 const freelancerSchema = mongoose.Schema({
   name: {
@@ -9,7 +10,7 @@ const freelancerSchema = mongoose.Schema({
   image: {
     type: String,
     trim: true,
-    default: ""
+    default: "",
   },
   email: {
     type: String,
@@ -63,11 +64,35 @@ const freelancerSchema = mongoose.Schema({
   ],
   role: {
     type: String,
-    default: "freelancer"
+    default: "freelancer",
   },
+  notes: [NoteSchema],
+  agency: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Agency",
+    },
+  ],
+  jobApplications: [
+    {
+      jobId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "accepted", "rejected"],
+        default: "pending",
+      },
+      appliedDate: {
+        type: Date,
+        default: Date.now(),
+      },
+    },
+  ],
 });
 
-
-const Freelancer = mongoose.models.Freelancer || mongoose.model("Freelancer", freelancerSchema);
+const Freelancer =
+  mongoose.models.Freelancer || mongoose.model("Freelancer", freelancerSchema);
 
 export default Freelancer;
