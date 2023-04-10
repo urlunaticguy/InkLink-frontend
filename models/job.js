@@ -13,7 +13,6 @@ const jobSchema = mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true,
     default: ""
   },
   status: {
