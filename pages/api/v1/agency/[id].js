@@ -1,3 +1,5 @@
+//get a particular agency with an endpoint /api/v1/agency/{id}
+
 import Agency from "../../../../models/agency";
 import connectDB from "../../db";
 import mongoose from "mongoose";

@@ -1,3 +1,6 @@
+//login a freelancer with email and password
+//with an api endpoint /api/v1/freelancer/login
+
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import connectDB from "../../db";
@@ -32,7 +35,7 @@ export default async function login(req, res) {
         token,
         status: 200,
         message: "success",
-        data: { ...freelancer._doc },
+        data: { id: freelancer._id },
       });
     } catch (e) {
       res.status(500).json({

@@ -1,3 +1,6 @@
+//register a user with name, email, image and password
+//with an api endpoint of /api/v1/user/register
+
 import bcryptjs from "bcryptjs";
 import User from "../../../../models/user";
 import connectDB from "../../db";

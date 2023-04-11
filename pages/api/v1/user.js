@@ -1,3 +1,6 @@
+//get all the users with a query params limit and skip 
+//with an api endpoint /api/v1/user?limit=2&skip=0
+
 import connectDb from "../db";
 import User from "../../../models/user";
 

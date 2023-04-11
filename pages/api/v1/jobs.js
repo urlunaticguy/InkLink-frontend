@@ -1,4 +1,5 @@
 //Apply for job
+//with an api endpoint of /api/v1/jobs?userId=<userID>&agencyId=<agencyID>&jobId=<jobID>
 
 import { Job } from "../../../models/job";
 import Agency from "../../../models/agency";
