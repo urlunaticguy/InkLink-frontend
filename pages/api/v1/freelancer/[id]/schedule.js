@@ -1,3 +1,8 @@
+// API endpoint - /api/v1/freelancer/{id}/schedule
+
+//1. Post a schedule by a particular freelancer
+//2. Get all schedules by a particular freelancer
+
 import connectDb from "../../../db";
 import Freelancer from "../../../../../models/freelancer";
 

@@ -1,3 +1,6 @@
+//register an agency with name, email, image and password
+//with an api endpoint of /api/v1/agency/register
+
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Agency from "../../../../models/agency";

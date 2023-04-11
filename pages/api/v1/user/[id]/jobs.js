@@ -1,3 +1,8 @@
+// API endpoint - /api/v1/user/{id}/jobs
+
+//1. Post a job requirement by user
+//2. Get all job requirement by user
+
 import connectDB from "../../../db";
 import User from "../../../../../models/user";
 import {Job, jobSchema} from "../../../../../models/job";

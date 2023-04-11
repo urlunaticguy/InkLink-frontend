@@ -1,4 +1,6 @@
 //get all jobs listed by the clients and are active
+//with api endpoint /api/v1/agency/jobs
+
 import connectDB from "../../db";
 import {Job} from "../../../../models/job";
 

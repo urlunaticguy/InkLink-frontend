@@ -1,3 +1,6 @@
+//login a user with email and password
+//with an api endpoint /api/v1/user/login
+
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../../../../models/user";
@@ -32,7 +35,7 @@ export default async function login(req, res) {
         token,
         status: 200,
         message: "success",
-        data: { ...user._doc },
+        data: { id: user._id },
       });
     } catch (e) {
       res.status(500).json({

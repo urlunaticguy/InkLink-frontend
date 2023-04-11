@@ -1,26 +1,6 @@
-// import connectDb from "../db";
-// import Agency from "../../../models/agency";
+//get all the freelancers with a query params limit and skip 
+//with an api endpoint /api/v1/freelancer?limit=2&skip=0
 
-// connectDb();
-
-// export default async function getAgencies(req, res) {
-//   const { method } = req;
-
-//   let agencies = await  Agency.find();
-
-//   if(method === "GET"){
-//     return res.status(200).json({
-//         status: 200,
-//         message: "success",
-//         data: agencies
-//     });
-//   }else{
-//       return res.status(405).json({
-//         status: 405,
-//         message: "Method not allowed",
-//       });
-//     }
-// }
 import connectDb from "../db";
 import Freelancer from "../../../models/freelancer";
 
