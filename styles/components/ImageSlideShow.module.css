@@ -1,0 +1,15 @@
+.mainCard {
+    width: 50%;
+    height: 40rem;
+    background-color: green;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .mainCard {
+        display: none;
+    }
+}

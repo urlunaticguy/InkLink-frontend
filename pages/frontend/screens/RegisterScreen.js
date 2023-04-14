@@ -40,11 +40,7 @@ function RegisterScreen() {
       ) : (
         // if user has not registered or logged in
         <div className={styles.mainDiv}>
-          <RegisterScreenCard
-            parentStyleClass={styles.parentCard}
-            formStyleClass={styles.formCard}
-            imageStyleClass={styles.imageCard}
-          />
+          <RegisterScreenCard />
         </div>
       )}
     </>

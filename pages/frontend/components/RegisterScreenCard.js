@@ -1,11 +1,13 @@
 import React from "react";
 import RegisterCard from "./RegisterCard";
+import ImageSlideShow from "./ImageSlideShow";
+import styles from "@/styles/components/RegisterScreenCard.module.css";
 
-function RegisterScreenCard(props) {
+function RegisterScreenCard() {
   return (
-    <div className={props.parentStyleClass}>
-      <RegisterCard className={props.formStyleClass} />
-      <div className={props.imageStyleClass}>Div Image</div>
+    <div className={styles.mainCard}>
+      <ImageSlideShow />
+      <RegisterCard />
     </div>
   );
 }
