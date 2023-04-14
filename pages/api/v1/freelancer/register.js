@@ -1,3 +1,6 @@
+//register a freelancer with name, email, image and password
+//with an api endpoint of /api/v1/freelancer/register
+
 import bcryptjs from "bcryptjs";
 import Freelancer from "../../../../models/freelancer";
 import connectDB from "../../db";

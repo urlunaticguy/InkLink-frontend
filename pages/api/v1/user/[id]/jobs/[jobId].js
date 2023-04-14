@@ -1,3 +1,9 @@
+// API endpoint - /api/v1/user/{id}/jobs/{jobID}
+
+//1. Get details of a particular job of a particular user
+//2. Delete a particular job by a particular user
+//3. Put (update) a particular job by a particular user
+
 import connectDB from "@/pages/api/db";
 import User from "../../../../../../models/user";
 

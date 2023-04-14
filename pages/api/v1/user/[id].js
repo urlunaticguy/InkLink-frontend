@@ -1,3 +1,5 @@
+//get a particular user with an endpoint /api/v1/user/{id}
+
 import User from "../../../../models/user";
 import connectDB from "../../db";
 import mongoose from "mongoose";

@@ -1,3 +1,6 @@
+//Apply for job
+//with an api endpoint of /api/v1/jobs?userId=<userID>&agencyId=<agencyID>&jobId=<jobID>
+
 import { Job } from "../../../models/job";
 import Agency from "../../../models/agency";
 import User from "../../../models/user";
@@ -10,11 +13,7 @@ export default async function handler(req, res) {
 
   const job = await Job.findById(jobId);
 
-  //   console.log("this is the job", job);
-
   const user = await User.findById(userId);
-
-  //   console.log("this is the user name that has posted the job", user);
 
   if (!job) {
     return res.status(404).json({
@@ -54,7 +53,6 @@ export default async function handler(req, res) {
       agency.jobs_applied.push(jobId);
       await agency.save();
 
-      // console.log(user.jobs.findById(jobId));
       return res.status(200).json({
         status: 200,
         message: "success",

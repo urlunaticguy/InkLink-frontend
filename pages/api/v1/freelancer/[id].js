@@ -1,3 +1,5 @@
+//get a particular freelancer with an endpoint /api/v1/freelancer/{id}
+
 import Freelancer from "../../../../models/freelancer";
 import connectDB from "../../db";
 import mongoose from "mongoose";
