@@ -88,13 +88,16 @@ function LoginCard() {
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);
       localStorage.setItem("Mongo_ID", receivedData.id);
-      if (response.data.message == "success") {
-        if (selectedChip == "agency") {
-          router.push("/frontend/screens/AgencyHomeScreen");
-        } else if (selectedChip == "user") {
-          router.push("/frontend/screens/ClientHomeScreen");
-        } else {
-          router.push("/frontend/screens/FreelancerHomeScreen");
+      setTimeout(() => {
+        setIsLoading(false);
+        if (response.data.message == "success") {
+          if (selectedChip == "agency") {
+            router.push("/frontend/screens/AgencyHomeScreen");
+          } else if (selectedChip == "user") {
+            router.push("/frontend/screens/ClientHomeScreen");
+          } else {
+            router.push("/frontend/screens/FreelancerHomeScreen");
+          }
         }
       }, 1500);
     } catch (error) {
