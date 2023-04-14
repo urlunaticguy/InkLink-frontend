@@ -1,0 +1,12 @@
+.mainCard { 
+    display: flex;
+    width: 80vw; 
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .mainCard {
+        width: 100vw;
+        height: 100vh;
+    }
+}
