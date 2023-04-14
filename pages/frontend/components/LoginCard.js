@@ -162,7 +162,7 @@ function LoginCard() {
       </form>
       <div style={{ marginTop: "1rem" }}>
         <h1 className={[styles.loginText, sairaCondensed.className].join(" ")}>
-          Don't have an account?
+          Dont have an account?
         </h1>
         <Link href="/frontend/screens/RegisterScreen">
           <GoogleButton bgColor="secondary" label="Signup" />
