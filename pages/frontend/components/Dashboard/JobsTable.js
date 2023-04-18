@@ -28,7 +28,7 @@ export default function JobsTable(props) {
           {props.rows.length == 0 && (
             <div style={{ padding: "1rem" }}>
               <p style={{ color: "black", fontFamily: "fantasy" }}>
-                You haven't posted any jobs.
+                You have not posted any jobs.
               </p>
             </div>
           )}
