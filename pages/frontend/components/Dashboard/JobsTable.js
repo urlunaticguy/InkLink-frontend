@@ -25,13 +25,13 @@ export default function JobsTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows.length == 0 && (
+          {/* {props.rows.length == 0 && (
             <div style={{ padding: "1rem" }}>
               <p style={{ color: "black", fontFamily: "fantasy" }}>
                 You have not posted any jobs.
               </p>
             </div>
-          )}
+          )} */}
           {props.rows.map((row, index) => (
             <TableRow
               className={styles.row}
