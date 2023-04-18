@@ -32,26 +32,27 @@ export default function JobsTable(props) {
               </p>
             </div>
           )} */}
-          {props.rows.map((row, index) => (
-            <TableRow
-              className={styles.row}
-              key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {index + 1}
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              <TableCell align="right">{row.details}</TableCell>
-              <TableCell align="right">{row.type}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">₹ {row.salary}</TableCell>
-              <TableCell align="right">{row.location}</TableCell>
-              <TableCell align="right">{row.frequency}</TableCell>
-            </TableRow>
-          ))}
+          {props.rows &&
+            props.rows.map((row, index) => (
+              <TableRow
+                className={styles.row}
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {index + 1}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {row.title}
+                </TableCell>
+                <TableCell align="right">{row.details}</TableCell>
+                <TableCell align="right">{row.type}</TableCell>
+                <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="right">₹ {row.salary}</TableCell>
+                <TableCell align="right">{row.location}</TableCell>
+                <TableCell align="right">{row.frequency}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
