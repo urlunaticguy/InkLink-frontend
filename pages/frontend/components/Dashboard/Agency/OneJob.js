@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Paper, Grid, Chip } from "@material-ui/core";
 
@@ -44,8 +44,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AgencyOneJob = (props) => {
+  const [job, setJob] = useState({});
+  //   console.log(props.job);
+
+  useEffect(() => {
+    if (props.job === null) {
+      console.log(" YAYAY YAYAYYAY YAYYA YAY YYA ");
+      setJob({
+        title: "",
+        salary: 0,
+        //   tags: ["tag1"],
+        location: "",
+        type: "",
+        details: "",
+        frequency: "",
+      });
+      // console.log(job);
+    } else {
+      setJob(JSON.parse(props.job));
+    }
+  }, []);
+  //   let jobb = props.job;
+  //   if (jobb === undefined) {
+  //     console.log("HELLO HSBADBSNJANJ");
+  //     job = {
+  //       title: "ssasa",
+  //       salary: 0,
+  //       tags: [],
+  //       location: "",
+  //       type: "",
+  //       details: "",
+  //       frequency: "",
+  //     };
+  //     console.log(job);
+  //   } else {
+  //     job = JSON.parse(props.job);
+  //   }
   const classes = useStyles();
-  const job = JSON.parse(props.job);
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.title}>
@@ -78,14 +113,15 @@ const AgencyOneJob = (props) => {
           <Typography variant="h6" className={classes.label}>
             Tags
           </Typography>
-          {job.tags.map((tag) => (
-            <Chip
-              style={{ cursor: "pointer" }}
-              key={tag}
-              label={tag}
-              className={classes.tag}
-            />
-          ))}
+          {job.tags &&
+            job.tags.map((tag) => (
+              <Chip
+                style={{ cursor: "pointer" }}
+                key={tag}
+                label={tag}
+                className={classes.tag}
+              />
+            ))}
         </Grid>
       </Grid>
     </div>

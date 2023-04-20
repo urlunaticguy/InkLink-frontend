@@ -52,6 +52,9 @@ function NavbarAgency(props) {
 
   const handleLogout = () => {
     localStorage.removeItem("isSignedIn");
+    localStorage.removeItem("Mongo_ID");
+    localStorage.removeItem("onejob");
+    localStorage.removeItem("userType");
     router.push("/");
   };
   return (

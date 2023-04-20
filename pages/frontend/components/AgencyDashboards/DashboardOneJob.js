@@ -7,8 +7,13 @@ import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.c
 import AgencyOneJob from "../Dashboard/Agency/OneJob";
 
 function DashboardSearchJobs() {
-  let xxx = localStorage.getItem("onejob");
-  console.log("hEYA");
+  let xxx;
+  try {
+    xxx = localStorage.getItem("onejob");
+  } catch (error) {
+    // Handle the error here
+  }
+
   console.log(xxx);
   //   const [allJobs, setAllJobs] = useState([]);
   useEffect(() => {
