@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../Dashboard/Navbar";
 import AppBar from "../Dashboard/AppBar";
-import PostJobForm from "../Dashboard/PostJobForm";
-import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.css";
+import PostJobSuccess from "../Dashboard/PostJobSuccess";
 
 function DashboardPostJob() {
   return (
@@ -10,7 +9,7 @@ function DashboardPostJob() {
       <Navbar name="POST_JOB" />
       <div style={{ width: "100%" }}>
         <AppBar title="Post Job" />
-        <PostJobForm />
+        <PostJobSuccess />
       </div>
     </div>
   );

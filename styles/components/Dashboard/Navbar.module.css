@@ -40,11 +40,14 @@
   .list {
     color: black;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 1rem; */
     /* background-color: red; */
   }
 
   .xyz:hover {
-    color: rgb(56, 56, 244);
+    color: rgb(53, 197, 111);
   }
 
   .abc {

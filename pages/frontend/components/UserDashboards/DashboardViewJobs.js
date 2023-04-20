@@ -5,7 +5,7 @@ import axios from "axios";
 import JobsTable from "../Dashboard/JobsTable";
 import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.css";
 
-function DashboardPostJob() {
+function DashboardViewJobs() {
   const [clientJobsArray, setClientJobsArray] = useState([]);
   useEffect(() => {
     const fetchClientJobs = async () => {
@@ -31,6 +31,7 @@ function DashboardPostJob() {
       <div style={{ width: "100%" }}>
         <AppBar title="View Jobs" />
         <div className={styles.example}>
+          {/* example class is hiding the scroll bar */}
           <JobsTable rows={clientJobsArray} />
         </div>
       </div>
@@ -38,4 +39,4 @@ function DashboardPostJob() {
   );
 }
 
-export default DashboardPostJob;
+export default DashboardViewJobs;

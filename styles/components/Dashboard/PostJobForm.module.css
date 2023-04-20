@@ -1,0 +1,45 @@
+.root {
+    height: 90vh;
+    background-color: white;
+    color: black;
+    padding: 1rem 2rem;
+}
+
+.form {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.jobStatusChips {
+    display: flex;
+    gap: 0.5rem;
+    width: 10rem;
+}
+
+.chip {
+    cursor: pointer;
+}
+
+.formSub {
+    width: 40em;
+    display: flex;
+    gap: 2rem;
+}
+
+.submitButton {
+    width: 6rem;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: black;
+    border: none;
+    padding: 0.5rem 0;
+}
+
+.submitButton:hover {
+    background-color: rgb(50, 46, 46);
+}

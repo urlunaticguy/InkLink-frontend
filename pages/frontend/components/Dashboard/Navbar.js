@@ -12,7 +12,6 @@ import {
 } from "@mui/icons-material";
 import { List, ListItem, ListItemText, Divider } from "@mui/material";
 import styles from "@/styles/components/Dashboard/Navbar.module.css";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 function Navbar(props) {
@@ -23,7 +22,6 @@ function Navbar(props) {
   const [postJobsColor, setPostJobsColor] = useState("black");
 
   const navigate = (url) => {
-    // localStorage.removeItem("toggle");
     router.push(url);
   };
 
@@ -35,12 +33,16 @@ function Navbar(props) {
     if (localStorage.getItem("toggle") !== null) {
       setToggle(!localStorage.getItem("toggle"));
     }
-    if (props.name == "HOME") {
+    if (props.name === "POST_JOB") {
+      setPostJobsColor("yellow");
+      console.log("HEEE");
+    }
+    if (props.name === "HOME") {
       setHomeColor("blue");
-    } else if (props.name == "VIEW_JOBS") {
-      setViewJobsColor("blue");
-    } else if (props.name == "POST_JOB") {
-      setPostJobsColor("blue");
+    } else if (props.name === "VIEW_JOBS") {
+      setViewJobsColor("red");
+    } else if (props.name === "POST_JOB") {
+      setPostJobsColor("red");
     }
   }, []);
 
@@ -232,11 +234,7 @@ function Navbar(props) {
               <Bookmark style={{ marginRight: "10px" }} />
               <ListItemText primary="Bookmarks" />
             </ListItem>
-            <Divider light />
-            {/* <Link
-              style={{ display: "flex", alignItems: "center" }}
-              href={"/frontend/components/UserDashboards/DashboardViewJobs"}
-            > */}
+            <Divider />
             <ListItem
               onClick={() => {
                 navigate(
@@ -250,7 +248,7 @@ function Navbar(props) {
               <Work style={{ marginRight: "10px" }} />
               <ListItemText primary="Jobs" />
             </ListItem>
-            {/* </Link> */}
+            <Divider />
           </List>
           <h2 className={[styles.menu, sairaCondensed.className].join(" ")}>
             Souvik Das - User
