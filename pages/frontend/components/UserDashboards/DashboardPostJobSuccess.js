@@ -6,7 +6,7 @@ import PostJobSuccess from "../Dashboard/PostJobSuccess";
 function DashboardPostJob() {
   return (
     <div style={{ display: "flex" }}>
-      <Navbar name="POST_JOB" />
+      <Navbar name="POST_JOB" type="User" />
       <div style={{ width: "100%" }}>
         <AppBar title="Post Job" />
         <PostJobSuccess />

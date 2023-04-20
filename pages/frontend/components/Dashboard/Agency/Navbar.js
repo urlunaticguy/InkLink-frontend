@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { sairaCondensed } from "../../../../utils/fonts";
+import { sairaCondensed } from "../../../../../utils/fonts";
 import {
   ToggleOff,
   ToggleOn,
@@ -9,12 +9,13 @@ import {
   AccountBox,
   Logout,
   Work,
+  Group,
 } from "@mui/icons-material";
 import { List, ListItem, ListItemText, Divider } from "@mui/material";
 import styles from "@/styles/components/Dashboard/Navbar.module.css";
 import { useRouter } from "next/router";
 
-function Navbar(props) {
+function NavbarAgency(props) {
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
   const [homeColor, setHomeColor] = useState("black");
@@ -29,6 +30,9 @@ function Navbar(props) {
     localStorage.setItem("toggle", toggle);
   }, [toggle]);
 
+  // search jobs, my jobs(clients and hired freelancers), bookmarks,
+  // search freelancers
+
   useEffect(() => {
     if (localStorage.getItem("toggle") !== null) {
       setToggle(!localStorage.getItem("toggle"));
@@ -41,7 +45,7 @@ function Navbar(props) {
       setHomeColor("blue");
     } else if (props.name === "VIEW_JOBS") {
       setViewJobsColor("red");
-    } else if (props.name === "POST_JOB") {
+    } else if (props.name === "SEARCH_JOBS") {
       setPostJobsColor("red");
     }
   }, []);
@@ -68,7 +72,7 @@ function Navbar(props) {
                 setToggle(false);
               }}
             >
-              <ToggleOff color="error" fontSize="large" />
+              {/* <ToggleOff color="error" fontSize="large" /> */}
             </div>
           </div>
           <h2 className={[styles.menuTemp, sairaCondensed.className].join(" ")}>
@@ -81,7 +85,7 @@ function Navbar(props) {
           >
             <ListItem
               onClick={() => {
-                navigate("/frontend/screens/ClientHomeScreen");
+                navigate("");
               }}
               sx={{ color: homeColor }}
               className={styles.xyz}
@@ -98,9 +102,7 @@ function Navbar(props) {
             <Divider />
             <ListItem
               onClick={() => {
-                navigate(
-                  "/frontend/components/UserDashboards/DashboardPostJob"
-                );
+                navigate("");
               }}
               sx={{ color: postJobsColor }}
               className={styles.xyz}
@@ -124,12 +126,10 @@ function Navbar(props) {
                 }}
               />
             </ListItem>
-            <Divider light />
+            <Divider />
             <ListItem
               onClick={() => {
-                navigate(
-                  "/frontend/components/UserDashboards/DashboardViewJobs"
-                );
+                navigate("");
               }}
               sx={{ color: viewJobsColor }}
               className={styles.xyz}
@@ -193,7 +193,7 @@ function Navbar(props) {
                 setToggle(true);
               }}
             >
-              <ToggleOn color="success" fontSize="large" />
+              {/* <ToggleOn color="success" fontSize="large" /> */}
             </div>
           </div>
           <h2 className={[styles.menu, sairaCondensed.className].join(" ")}>
@@ -206,19 +206,19 @@ function Navbar(props) {
           >
             <ListItem
               onClick={() => {
-                navigate("/frontend/screens/ClientHomeScreen");
+                navigate("");
               }}
               sx={{ color: homeColor }}
               className={styles.xyz}
             >
               <Home style={{ marginRight: "10px" }} />
-              <ListItemText primary="Home" />
+              <ListItemText primary="My Jobs" />
             </ListItem>
             <Divider />
             <ListItem
               onClick={() => {
                 navigate(
-                  "/frontend/components/UserDashboards/DashboardPostJob"
+                  "/frontend/components/AgencyDashboards/DashboardSearchJobs"
                 );
               }}
               sx={{ color: postJobsColor }}
@@ -226,26 +226,24 @@ function Navbar(props) {
               button
               divider
             >
-              <PostAdd style={{ marginRight: "10px" }} />
-              <ListItemText primary="Post Job" />
+              <Work style={{ marginRight: "10px" }} />
+              <ListItemText primary="Search Jobs" />
             </ListItem>
             <ListItem className={styles.xyz} button>
-              <Bookmark style={{ marginRight: "10px" }} />
-              <ListItemText primary="Bookmarks" />
+              <Group style={{ marginRight: "10px" }} />
+              <ListItemText primary="Search Freelancers" />
             </ListItem>
             <Divider />
             <ListItem
               onClick={() => {
-                navigate(
-                  "/frontend/components/UserDashboards/DashboardViewJobs"
-                );
+                navigate("");
               }}
               sx={{ color: viewJobsColor }}
               className={styles.xyz}
               button
             >
-              <Work style={{ marginRight: "10px" }} />
-              <ListItemText primary="Jobs" />
+              <Bookmark style={{ marginRight: "10px" }} />
+              <ListItemText primary="Bookmarks" />
             </ListItem>
             <Divider />
           </List>
@@ -280,4 +278,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default NavbarAgency;

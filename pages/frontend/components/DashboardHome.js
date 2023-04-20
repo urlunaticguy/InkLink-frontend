@@ -5,18 +5,10 @@ import AppBar from "./Dashboard/AppBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // color: "red",
     height: "100vh",
     width: "100vw",
     display: "flex",
-    // alignItems: "center",
-    // justifyContent: "start",
     backgroundColor: "transparent",
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
   },
 }));
 
@@ -24,8 +16,9 @@ function DashboardHome() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Navbar name="HOME" />
+      <Navbar name="HOME" type="User" />
       <AppBar title="Home" />
+      {/* put home content for user here */}
     </div>
   );
 }

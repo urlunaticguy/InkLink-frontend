@@ -7,7 +7,7 @@ import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.c
 function DashboardPostJob() {
   return (
     <div style={{ display: "flex" }}>
-      <Navbar name="POST_JOB" />
+      <Navbar name="POST_JOB" type="User" />
       <div style={{ width: "100%" }}>
         <AppBar title="Post Job" />
         <PostJobForm />

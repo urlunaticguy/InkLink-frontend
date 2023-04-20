@@ -1,0 +1,16 @@
+.root {
+    height: 90vh;
+}
+.tableHead {
+    background-color: black;
+    color: white;
+}
+
+.tableHeadRow {
+    color: white;
+}
+
+.row:hover {
+    cursor: pointer;
+    background-color: rgb(231, 226, 226);
+}

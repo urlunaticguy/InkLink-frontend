@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../Dashboard/Navbar";
+import NavbarAgency from "../Dashboard/Agency/Navbar";
 import AppBar from "../Dashboard/AppBar";
 import axios from "axios";
-import JobsTable from "../Dashboard/JobsTable";
+import AgencySearchJobs from "../Dashboard/Agency/SearchJobs";
 import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.css";
 
-function DashboardViewJobs() {
-  const [clientJobsArray, setClientJobsArray] = useState([]);
+function DashboardSearchJobs() {
+  const [allJobs, setAllJobs] = useState([]);
   useEffect(() => {
     const fetchClientJobs = async () => {
-      const user_id_mongo = localStorage.getItem("Mongo_ID");
-      const API_URL_CLIENT_GETJOBS = `/api/v1/user/${user_id_mongo}/jobs`;
+      //   const user_id_mongo = localStorage.getItem("Mongo_ID");
+      const API_URL_CLIENT_GETJOBS = `/api/v1/agency/jobs`;
       try {
         const response = await axios.get(API_URL_CLIENT_GETJOBS);
-        // console.log(response.data);
+        console.log(response.data);
         const destructedData = response.data.data; // array of jobs
         if (response.data.message == "success") {
-          console.log("Successfully fetched Client Jobs.");
-          setClientJobsArray(destructedData);
+          console.log("Successfully fetched All Jobs.");
+          setAllJobs(destructedData);
         }
       } catch (error) {
         console.error(error);
@@ -27,16 +27,15 @@ function DashboardViewJobs() {
   }, []);
   return (
     <div style={{ display: "flex" }}>
-      <Navbar name="VIEW_JOBS" type="User" />
+      <NavbarAgency name="SEARCH_JOBS" type="Agency" />
       <div style={{ width: "100%" }}>
-        <AppBar title="View Jobs" />
+        <AppBar title="Search Jobs" />
         <div className={styles.example}>
-          {/* example class is hiding the scroll bar */}
-          <JobsTable rows={clientJobsArray} />
+          <AgencySearchJobs data={allJobs} />
         </div>
       </div>
     </div>
   );
 }
 
-export default DashboardViewJobs;
+export default DashboardSearchJobs;
