@@ -35,7 +35,7 @@ export default async function login(req, res) {
         token,
         status: 200,
         message: "success",
-        data: { id: freelancer._id },
+        data: { id: freelancer._id, name: freelancer.name },
       });
     } catch (e) {
       res.status(500).json({

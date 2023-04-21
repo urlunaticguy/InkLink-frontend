@@ -34,7 +34,10 @@ export default async function login(req, res) {
       token,
       status: 200,
       message: "success",
-      data: { id: agency._id },
+      data: { 
+        id: agency._id,
+        name: agency.name,
+       },
     });
   } catch (e) {
     res.status(500).json({
