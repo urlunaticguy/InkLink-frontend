@@ -30,6 +30,27 @@ const jobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  hired_agency:{
+    agency_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Agency"
+    },
+    hired_date: {
+      type: Date,
+    },
+    duration: {
+      type: String,
+      default: "",
+    },
+    contact_person: {
+      type: String,
+      trim: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+    },
+  },
   location: {
     type: String,
     required: true,
@@ -45,7 +66,21 @@ const jobSchema = mongoose.Schema({
     trim: true,
   },
   applicants:{
-    type: [String],
+    type: [{
+      agency_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Agency",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "hired", "rejected"],
+        default: "pending",
+      },
+      appliedDate: {
+        type: Date,
+        default: Date.now(),
+      },
+    }],
     default: []
   },
   created_on: {
