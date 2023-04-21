@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         job.applicants = [];
       }
 
-      if (job.applicants.includes(agency._id)) {
+      if (await Job.findOne({ _id: jobId, "applicants.agency_id": agencyId })) {
         return res
           .status(400)
           .json({
@@ -39,11 +39,11 @@ export default async function handler(req, res) {
           });
       }
 
-      job.applicants.push(agency._id);
+      job.applicants.push({agency_id: agency._id});
 
       user.jobs
         .find((job) => job._id.toString() === jobId)
-        .applicants.push(agency._id);
+        .applicants.push({agency_id: agency._id});
 
       await user.save();
 
