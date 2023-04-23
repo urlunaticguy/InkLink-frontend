@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "@/styles/components/Dashboard/PostJobForm.module.css";
 import { sairaCondensed } from "../../../../utils/fonts";
 import { TextField } from "@mui/material";
-import { Chip } from "@material-ui/core";
 import axios from "axios";
 import { useRouter } from "next/router";
 import InputLabel from "@mui/material/InputLabel";

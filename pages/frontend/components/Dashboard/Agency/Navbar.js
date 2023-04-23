@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { sairaCondensed } from "../../../../../utils/fonts";
 import {
-  ToggleOff,
-  ToggleOn,
   Home,
   Bookmark,
   PostAdd,
@@ -29,9 +27,6 @@ function NavbarAgency(props) {
   useEffect(() => {
     localStorage.setItem("toggle", toggle);
   }, [toggle]);
-
-  // search jobs, my jobs(clients and hired freelancers), bookmarks,
-  // search freelancers
 
   useEffect(() => {
     if (localStorage.getItem("toggle") !== null) {
@@ -92,7 +87,6 @@ function NavbarAgency(props) {
               }}
               sx={{ color: homeColor }}
               className={styles.xyz}
-              button
             >
               <Home
                 style={{
@@ -109,7 +103,6 @@ function NavbarAgency(props) {
               }}
               sx={{ color: postJobsColor }}
               className={styles.xyz}
-              button
               divider
             >
               <PostAdd
@@ -120,7 +113,7 @@ function NavbarAgency(props) {
                 }}
               />
             </ListItem>
-            <ListItem className={styles.xyz} button>
+            <ListItem className={styles.xyz}>
               <Bookmark
                 style={{
                   marginLeft: "-10px",
@@ -136,7 +129,6 @@ function NavbarAgency(props) {
               }}
               sx={{ color: viewJobsColor }}
               className={styles.xyz}
-              button
             >
               <Work
                 style={{
@@ -155,7 +147,7 @@ function NavbarAgency(props) {
             component="nav"
             aria-label="mailbox folders"
           >
-            <ListItem className={styles.xyz} button>
+            <ListItem className={styles.xyz}>
               <AccountBox
                 style={{
                   marginLeft: "-10px",
@@ -170,7 +162,6 @@ function NavbarAgency(props) {
                 handleLogout();
               }}
               className={styles.xyz}
-              button
             >
               <Logout
                 style={{
@@ -226,7 +217,6 @@ function NavbarAgency(props) {
               }}
               sx={{ color: postJobsColor }}
               className={styles.xyz}
-              button
               divider
             >
               <Work style={{ marginRight: "10px" }} />
@@ -243,7 +233,6 @@ function NavbarAgency(props) {
               }}
               sx={{ color: viewJobsColor }}
               className={styles.xyz}
-              button
             >
               <Bookmark style={{ marginRight: "10px" }} />
               <ListItemText primary="Bookmarks" />
@@ -258,7 +247,7 @@ function NavbarAgency(props) {
             component="nav"
             aria-label="mailbox folders"
           >
-            <ListItem className={styles.xyz} button>
+            <ListItem className={styles.xyz}>
               <AccountBox style={{ marginRight: "10px" }} />
               <ListItemText primary="Profile" />
             </ListItem>
@@ -268,7 +257,6 @@ function NavbarAgency(props) {
                 handleLogout();
               }}
               className={styles.xyz}
-              button
             >
               <Logout style={{ marginRight: "10px" }} />
               <ListItemText primary="Logout" />

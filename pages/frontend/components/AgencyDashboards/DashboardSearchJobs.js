@@ -9,7 +9,6 @@ function DashboardSearchJobs() {
   const [allJobs, setAllJobs] = useState([]);
   useEffect(() => {
     const fetchClientJobs = async () => {
-      //   const user_id_mongo = localStorage.getItem("Mongo_ID");
       const API_URL_CLIENT_GETJOBS = `/api/v1/agency/jobs`;
       try {
         const response = await axios.get(API_URL_CLIENT_GETJOBS);

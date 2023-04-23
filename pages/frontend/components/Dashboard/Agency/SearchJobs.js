@@ -32,8 +32,6 @@ const AgencySearchJobs = (props) => {
   };
 
   const navigateToOneJob = (jobObject) => {
-    // console.log("HI FROM SOUVIK");
-    // console.log(jobObject);
     localStorage.setItem("onejob", JSON.stringify(jobObject));
     router.push("/frontend/components/AgencyDashboards/DashboardOneJob");
   };

@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../Dashboard/Navbar";
 import AppBar from "../Dashboard/AppBar";
 import PostJobForm from "../Dashboard/PostJobForm";
-import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.css";
 
 function DashboardPostJob() {
   return (

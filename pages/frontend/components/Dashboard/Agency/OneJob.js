@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Paper, Grid, Chip } from "@material-ui/core";
+import { Typography, Grid, Chip } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,8 +8,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     color: "black",
     padding: theme.spacing(4),
-    // margin: theme.spacing(4),
-    // borderRadius: theme.spacing(2),
     backgroundColor: "white",
     boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
   },
@@ -45,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const AgencyOneJob = (props) => {
   const [job, setJob] = useState({});
-  //   console.log(props.job);
 
   useEffect(() => {
     if (props.job === null) {
@@ -59,27 +56,10 @@ const AgencyOneJob = (props) => {
         details: "",
         frequency: "",
       });
-      // console.log(job);
     } else {
       setJob(JSON.parse(props.job));
     }
   }, []);
-  //   let jobb = props.job;
-  //   if (jobb === undefined) {
-  //     console.log("HELLO HSBADBSNJANJ");
-  //     job = {
-  //       title: "ssasa",
-  //       salary: 0,
-  //       tags: [],
-  //       location: "",
-  //       type: "",
-  //       details: "",
-  //       frequency: "",
-  //     };
-  //     console.log(job);
-  //   } else {
-  //     job = JSON.parse(props.job);
-  //   }
   const classes = useStyles();
   return (
     <div className={classes.root}>
