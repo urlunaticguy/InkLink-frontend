@@ -109,7 +109,7 @@ function LoginCard() {
       <h1
         className={[styles.inkLinkHeading, sairaCondensed.className].join(" ")}
       >
-        Ink Link
+        Ink-Link
       </h1>
       <h1 className={[styles.heading, sairaCondensed.className].join(" ")}>
         Login
