@@ -5,7 +5,7 @@
 
 import connectDB from "../../../db";
 import User from "../../../../../models/user";
-import {Job, jobSchema} from "../../../../../models/job";
+import { Job } from "../../../../../models/job";
 
 connectDB();
 
@@ -40,7 +40,7 @@ export default async function postJob(req, res) {
           user: {
             name: user.name,
             _id: user._id,
-            avatar: user.avatar
+            avatar: user.avatar,
           },
           frequency,
           location,

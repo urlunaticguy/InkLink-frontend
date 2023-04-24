@@ -23,10 +23,9 @@ const jobSchema = mongoose.Schema({
       },
       avatar: {
         type: String,
-        required: true,
       },
-      ref: "User"
-    }
+    },
+    ref: "User",
   },
   status: {
     type: String,
@@ -53,7 +52,6 @@ const jobSchema = mongoose.Schema({
     },
     duration: {
       type: String,
-      default: "",
     },
     contact_person: {
       type: String,
