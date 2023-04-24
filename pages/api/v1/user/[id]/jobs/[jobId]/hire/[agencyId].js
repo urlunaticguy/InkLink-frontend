@@ -79,11 +79,19 @@ export default async function jobFunc(req, res) {
           }
         }
 
+        agency.jobs_hired.push({
+            job_id: jobId,
+            hired_date: Date.now(),
+            user_id: userId
+        });
+
         job.updated_on = Date.now();
 
         job = await job.save();
 
         await user.save();
+
+        await agency.save();
 
         res.status(200).json({
           status: 200,

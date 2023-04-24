@@ -7,7 +7,7 @@ const freelancerSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  image: {
+  avatar: {
     type: String,
     trim: true,
     default: "",

@@ -1,4 +1,4 @@
-//register a user with name, email, image and password
+//register a user with name, email, avatar and password
 //with an api endpoint of /api/v1/user/register
 
 import bcryptjs from "bcryptjs";
@@ -7,7 +7,7 @@ import connectDB from "../../db";
 import jwt from "jsonwebtoken";
 
 export default async function register(req, res) {
-  const { email, password, name, image } = req.body;
+  const { email, password, name, avatar } = req.body;
 
   try {
     await connectDB();
@@ -39,7 +39,7 @@ export default async function register(req, res) {
   let user = new User({
     email,
     password: hashedPassword,
-    image,
+    avatar,
     name,
   });
 

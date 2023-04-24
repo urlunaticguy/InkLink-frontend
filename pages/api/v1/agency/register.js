@@ -1,4 +1,4 @@
-//register an agency with name, email, image and password
+//register an agency with name, email, avatar and password
 //with an api endpoint of /api/v1/agency/register
 
 import bcryptjs from "bcryptjs";
@@ -7,7 +7,7 @@ import Agency from "../../../../models/agency";
 import connectDB from "../../db";
 
 export default async function register(req, res) {
-  const { email, password, name, image } = req.body;
+  const { email, password, name, avatar } = req.body;
 
   try {
     await connectDB();
@@ -37,7 +37,7 @@ export default async function register(req, res) {
   let agency = new Agency({
     email,
     password: hashedPassword,
-    image,
+    avatar,
     name,
   });
 

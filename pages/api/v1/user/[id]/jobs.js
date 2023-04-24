@@ -37,7 +37,11 @@ export default async function postJob(req, res) {
           title,
           details,
           salary,
-          userId: user._id.toString(),
+          user: {
+            name: user.name,
+            _id: user._id,
+            avatar: user.avatar
+          },
           frequency,
           location,
           type,
