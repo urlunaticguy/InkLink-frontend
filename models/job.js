@@ -11,9 +11,22 @@ const jobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  userId: {
-    type: String,
-    default: ""
+  user:{
+    type: {
+      name: {
+        type: String,
+        required: true,
+      },
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
+      avatar: {
+        type: String,
+        required: true,
+      },
+      ref: "User"
+    }
   },
   status: {
     type: String,

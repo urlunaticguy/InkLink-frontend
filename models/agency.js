@@ -6,7 +6,7 @@ const agencySchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  image: {
+  avatar: {
     type: String,
     trim: true,
     default: ""
@@ -57,6 +57,23 @@ const agencySchema = new mongoose.Schema({
   },
   jobs_applied :{
     type: [String],
+    default: []
+  },
+  jobs_hired :{
+    type: [{
+      job_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Jobs",
+      },
+      hired_date:{
+        type: Date,
+        default: Date.now,
+      },
+      user_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Agency",
+      },
+    }],
     default: []
   }
 });
