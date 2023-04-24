@@ -1,4 +1,4 @@
-//get all the agencies with a query params limit and skip 
+//get all the agencies with a query params limit and skip
 //with an api endpoint /api/v1/agency?limit=2&skip=0
 
 import connectDb from "../db";
@@ -20,6 +20,7 @@ export default async function getAgencies(req, res) {
 
   try {
     const agencies = await Agency.find()
+      .select("-password -bookmarks")
       .skip(parseInt(skip))
       .limit(parseInt(limit))
       .lean(); // add .lean() to improve performance by returning plain JavaScript objects instead of Mongoose documents

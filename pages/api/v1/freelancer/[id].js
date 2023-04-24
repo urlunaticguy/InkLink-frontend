@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const freelancer = await Freelancer.findById(id);
+    const freelancer = await Freelancer.findById(id).select("-password");
 
     if (!freelancer) {
       return res.status(404).json({
