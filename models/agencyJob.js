@@ -41,7 +41,6 @@ const agencyJobSchema = mongoose.Schema({
         },
         duration: {
           type: String,
-          default: "",
         },
         contact_person: {
           type: String,
