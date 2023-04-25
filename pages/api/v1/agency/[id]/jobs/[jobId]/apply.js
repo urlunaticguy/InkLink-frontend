@@ -4,7 +4,7 @@
 import { Job } from "../../../../../../../models/job";
 import Agency from "../../../../../../../models/agency";
 import User from "../../../../../../../models/user";
-import connectDB from "../../../db";
+import connectDB from "../../../../../db";
 
 connectDB();
 export default async function handler(req, res) {
