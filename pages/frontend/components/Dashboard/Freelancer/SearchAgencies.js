@@ -9,7 +9,8 @@ import {
 } from "@material-ui/core";
 import styles from "@/styles/components/Dashboard/Agency/SearchJobs.module.css";
 import { useRouter } from "next/router";
-const AgencySearchJobs = (props) => {
+
+const FreelancerSearchAgencies = (props) => {
   const router = useRouter();
   const dateInRightFormat = (dateString) => {
     const dateObj = new Date(dateString);
@@ -21,18 +22,17 @@ const AgencySearchJobs = (props) => {
     return formattedDate;
   };
 
-  const agencyJobRelationStatus = (applicantsArray) => {
-    let agencyMongoID = localStorage.getItem("Mongo_ID");
-    for (let i = 0; i < applicantsArray.length; i++) {
-      if (agencyMongoID === applicantsArray[i].agency_id) {
-        return true;
-      }
-    }
-    return false;
-  };
+//   const agencyJobRelationStatus = (applicantsArray) => {
+//     let agencyMongoID = localStorage.getItem("Mongo_ID");
+//     for (let i = 0; i < applicantsArray.length; i++) {
+//       if (agencyMongoID === applicantsArray[i]) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   };
 
   const navigateToOneJob = (jobObject) => {
-    console.log(jobObject)
     localStorage.setItem("onejob", JSON.stringify(jobObject));
     router.push("/frontend/components/AgencyDashboards/DashboardOneJob");
   };
@@ -44,9 +44,9 @@ const AgencySearchJobs = (props) => {
             <TableCell>
               <p className={styles.tableHeadRow}>#</p>
             </TableCell>
-            <TableCell>
+            {/* <TableCell>
               <p className={styles.tableHeadRow}>Date Created</p>
-            </TableCell>
+            </TableCell> */}
             <TableCell>
               <p className={styles.tableHeadRow}>Title</p>
             </TableCell>
@@ -62,9 +62,9 @@ const AgencySearchJobs = (props) => {
             <TableCell>
               <p className={styles.tableHeadRow}>Details</p>
             </TableCell>
-            <TableCell>
+            {/* <TableCell>
               <p className={styles.tableHeadRow}>My Job Status</p>
-            </TableCell>
+            </TableCell> */}
           </TableRow>
         </TableHead>
         <tbody>
@@ -78,17 +78,17 @@ const AgencySearchJobs = (props) => {
                 key={job._id}
               >
                 <TableCell>{index + 1}</TableCell>
-                <TableCell>{dateInRightFormat(job.created_on)}</TableCell>
-                <TableCell>{job.title}</TableCell>
+                {/* <TableCell>{dateInRightFormat(job.created_on)}</TableCell> */}
+                <TableCell>{job.name}</TableCell>
                 <TableCell>{job.type}</TableCell>
                 <TableCell>{job.location}</TableCell>
                 <TableCell>{job.salary}</TableCell>
                 <TableCell>{job.details}</TableCell>
-                <TableCell>
+                {/* <TableCell>
                   {agencyJobRelationStatus(job.applicants)
                     ? "Applied"
                     : "Not Applied"}
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             ))}
         </tbody>
@@ -97,4 +97,4 @@ const AgencySearchJobs = (props) => {
   );
 };
 
-export default AgencySearchJobs;
+export default FreelancerSearchAgencies;

@@ -1,6 +1,6 @@
 import React from "react";
-import GoogleButton from "../components/Google Material Design/GoogleButton";
 import { useRouter } from "next/router";
+import DashboardHomeFreelancer from "../components/DashboardHomeFreelancer";
 
 function FreelancerHomeScreen() {
   const router = useRouter();
@@ -10,8 +10,9 @@ function FreelancerHomeScreen() {
   };
   return (
     <>
-      <div>This is freelancer home screen.</div>{" "}
-      <GoogleButton onClick={handleLogout} label="Logout Freelancer" />
+      {/* <div>This is freelancer home screen.</div>{" "}
+      <GoogleButton onClick={handleLogout} label="Logout Freelancer" /> */}
+      <DashboardHomeFreelancer />
     </>
   );
 }

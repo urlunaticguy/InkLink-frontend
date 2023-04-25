@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid, Chip } from "@material-ui/core";
+import styles from "@/styles/components/Dashboard/Agency/OneJob.module.css";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AgencyOneJob = (props) => {
   const [job, setJob] = useState({});
+  const [agencyID, setAgencyID] = useState("")
+  const [jobApplyButtonState, setJobApplyButtonState] = useState(false)
+  const [jobApplyButtonText, setJobApplyButtonText] = useState("Apply for job")
 
   useEffect(() => {
     if (props.job === null) {
@@ -55,11 +60,51 @@ const AgencyOneJob = (props) => {
         type: "",
         details: "",
         frequency: "",
+        applicants: [],
       });
     } else {
       setJob(JSON.parse(props.job));
     }
+    setAgencyID(localStorage.getItem("Mongo_ID"))
   }, []);
+
+  useEffect(() => {
+    let arr = job.applicants
+
+    if (arr === undefined) {
+      arr = [{ agency_id : "sadacdnhan"}]
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+      let element = arr[i]
+      if (agencyID === element.agency_id) {
+        setJobApplyButtonState(true)
+        setJobApplyButtonText("Already applied")
+      }
+    }
+  }, [job])
+
+  const applyForJob = async (userID, jobID) => {
+    // console.log(agencyID)
+    // localStorage
+    const API_URL_AGENCY_APPLYJOB = `/api/v1/jobs?userId=${userID}&agencyId=${agencyID}&jobId=${jobID}`;
+    try {
+      const response = await axios.get(API_URL_AGENCY_APPLYJOB);
+      console.log(response.data);
+      // const destructedData = response.data.data; // array of jobs
+      // if (response.data.message == "success") {
+      //   console.log("Successfully fetched All Jobs.");
+      //   setAllJobs(destructedData);
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log(props.job)
+  // }, [props])
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -102,6 +147,9 @@ const AgencyOneJob = (props) => {
                 className={classes.tag}
               />
             ))}
+            <div>
+              <button disabled={jobApplyButtonState} onClick={() => {applyForJob(job.userId, job._id)}} className={styles.applyButton}>{jobApplyButtonText}</button>
+            </div>
         </Grid>
       </Grid>
     </div>
