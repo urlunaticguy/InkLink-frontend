@@ -1,15 +1,14 @@
 //Apply for job
-//with an api endpoint of /api/v1/jobs?userId=<userID>&agencyId=<agencyID>&jobId=<jobID>
+//with an api endpoint of /api/v1/agency/{agencyId}/jobs?userId=<userID>&jobId=<jobID>
 
-import { Job } from "../../../models/job";
-import Agency from "../../../models/agency";
-import User from "../../../models/user";
-import connectDB from "../db";
+import { Job } from "../../../../../models/job";
+import Agency from "../../../../../models/agency";
+import User from "../../../../../models/user";
+import connectDB from "../../../db";
 
 connectDB();
 export default async function handler(req, res) {
-  // const router = useRouter();
-  const { userId, agencyId, jobId } = req.query;
+  const { userId, id, jobId } = req.query;
 
   const job = await Job.findById(jobId);
 
@@ -23,14 +22,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const agency = await Agency.findById(agencyId);
+    const agency = await Agency.findById(id);
 
     if (agency.role === "agency") {
       if (!job.applicants) {
         job.applicants = [];
       }
 
-      if (await Job.findOne({ _id: jobId, "applicants.agency_id": agencyId })) {
+      if (await Job.findOne({ _id: jobId, "applicants.agency_id": id })) {
         return res
           .status(400)
           .json({
@@ -56,7 +55,7 @@ export default async function handler(req, res) {
       return res.status(200).json({
         status: 200,
         message: "success",
-        data: job,
+        data: "Successfully applied for the job",
       });
     } else {
       return res.status(401).json({

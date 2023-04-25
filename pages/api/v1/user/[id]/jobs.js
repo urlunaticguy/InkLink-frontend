@@ -14,7 +14,7 @@ export default async function postJob(req, res) {
 
   const id = req.query.id;
 
-  let user = await User.findById(id);
+  let user = await User.findById(id).select("-password");
 
   if (!user) {
     return res.status(404).json({
@@ -26,12 +26,20 @@ export default async function postJob(req, res) {
   switch (method) {
     case "POST":
       try {
-        const { title, details, salary, frequency, location, type, tags, status } =
-          req.body;
+        const {
+          title,
+          details,
+          salary,
+          frequency,
+          location,
+          type,
+          tags,
+          status,
+        } = req.body;
 
         if (!user.jobs) {
           user.jobs = [];
-        } 
+        }
 
         let job = {
           title,
@@ -57,7 +65,6 @@ export default async function postJob(req, res) {
         job = new Job(job);
 
         job._id = savedUser.jobs[savedUser.jobs.length - 1]._id;
-
 
         await job.save();
 
