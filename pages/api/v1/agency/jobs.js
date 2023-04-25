@@ -16,6 +16,7 @@ export default async function handler(
       const { limit, skip } = req.query;
 
       const jobs = await Job.find({ status: "active" })
+        .select("-applicants")
         .skip(parseInt(skip))
         .limit(parseInt(limit));
         

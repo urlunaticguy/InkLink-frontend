@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).select("-password");
 
     if (!user) {
       return res.status(404).json({

@@ -1,36 +1,36 @@
-//Apply for job
-//with an api endpoint of /api/v1/jobs?userId=<userID>&agencyId=<agencyID>&jobId=<jobID>
+//apply for a job posted by an agency
+//Endpoint :- /api/v1/freelancer/{freelancerID}/jobs/{jobID}/apply
 
-import { Job } from "../../../models/job";
-import Agency from "../../../models/agency";
-import User from "../../../models/user";
-import connectDB from "../db";
+import { AgencyJob } from "../../../../../../../models/agencyJob";
+import Agency from "../../../../../../../models/agency";
+import connectDB from "../../../../../db";
+import Freelancer from "../../../../../../../models/freelancer";
 
 connectDB();
 export default async function handler(req, res) {
-  // const router = useRouter();
-  const { userId, agencyId, jobId } = req.query;
+  const {id, jobId } = req.query;
 
-  const job = await Job.findById(jobId);
+  const job = await AgencyJob.findById(jobId);
 
-  const user = await User.findById(userId);
+  const agency = await Agency.findById(job.agencyId);
+
+  const freelancer = await Freelancer.findById(id);
 
   if (!job) {
     return res.status(404).json({
       status: 404,
-      message: "job not found",
+      message: "Job not found",
     });
   }
 
   try {
-    const agency = await Agency.findById(agencyId);
 
-    if (agency.role === "agency") {
+    if (freelancer.role === "freelancer") {
       if (!job.applicants) {
         job.applicants = [];
       }
 
-      if (await Job.findOne({ _id: jobId, "applicants.agency_id": agencyId })) {
+      if (await AgencyJob.findOne({ _id: jobId, "applicants.freelancer_id": id })) {
         return res
           .status(400)
           .json({
@@ -39,9 +39,9 @@ export default async function handler(req, res) {
           });
       }
 
-      job.applicants.push({agency_id: agency._id});
+      job.applicants.push({freelancer_id: id});
 
-      user.jobs
+      agency.jobs
         .find((job) => job._id.toString() === jobId)
         .applicants.push({agency_id: agency._id});
 
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       return res.status(200).json({
         status: 200,
         message: "success",
-        data: job,
+        data: "Successfully applied for the job",
       });
     } else {
       return res.status(401).json({

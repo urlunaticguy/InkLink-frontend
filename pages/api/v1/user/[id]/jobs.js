@@ -5,7 +5,7 @@
 
 import connectDB from "../../../db";
 import User from "../../../../../models/user";
-import {Job, jobSchema} from "../../../../../models/job";
+import { Job } from "../../../../../models/job";
 
 connectDB();
 
@@ -14,7 +14,7 @@ export default async function postJob(req, res) {
 
   const id = req.query.id;
 
-  let user = await User.findById(id);
+  let user = await User.findById(id).select("-password");
 
   if (!user) {
     return res.status(404).json({
@@ -26,18 +26,30 @@ export default async function postJob(req, res) {
   switch (method) {
     case "POST":
       try {
-        const { title, details, salary, frequency, location, type, tags, status } =
-          req.body;
+        const {
+          title,
+          details,
+          salary,
+          frequency,
+          location,
+          type,
+          tags,
+          status,
+        } = req.body;
 
         if (!user.jobs) {
           user.jobs = [];
-        } 
+        }
 
         let job = {
           title,
           details,
           salary,
-          userId: user._id.toString(),
+          user: {
+            name: user.name,
+            _id: user._id,
+            avatar: user.avatar,
+          },
           frequency,
           location,
           type,
@@ -53,7 +65,6 @@ export default async function postJob(req, res) {
         job = new Job(job);
 
         job._id = savedUser.jobs[savedUser.jobs.length - 1]._id;
-
 
         await job.save();
 

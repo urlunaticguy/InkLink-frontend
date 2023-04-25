@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const agency = await Agency.findById(id);
+    const agency = await Agency.findById(id).select("-password");
 
     if (!agency) {
       return res.status(404).json({
