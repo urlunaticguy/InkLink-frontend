@@ -71,9 +71,27 @@ const agencySchema = new mongoose.Schema({
       },
       user_id:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Agency",
+        ref: "User",
       },
     }],
+    default: []
+  },
+  jobs_posted :{
+    type: [{
+      posted_date:{
+        type: Date,
+        default: Date.now,
+      },
+      job_id:{
+        type: String,
+        ref: "Jobs",
+      },
+      hired:{
+        type: Boolean,
+        default: false,
+      },
+    }],
+    ref: "AgencyJob",
     default: []
   }
 });
