@@ -65,6 +65,9 @@ const AgencyOneJob = (props) => {
     } else {
       setJob(JSON.parse(props.job));
     }
+    if (localStorage.getItem("onejobBool") === "Applied") {
+      setJobApplyButtonText("Already Applied")
+    }
     setAgencyID(localStorage.getItem("Mongo_ID"))
   }, []);
 
@@ -75,21 +78,22 @@ const AgencyOneJob = (props) => {
       arr = [{ agency_id : "sadacdnhan"}]
     }
 
-    for (let i = 0; i < arr.length; i++) {
-      let element = arr[i]
-      if (agencyID === element.agency_id) {
-        setJobApplyButtonState(true)
-        setJobApplyButtonText("Already applied")
-      }
-    }
+    // for (let i = 0; i < arr.length; i++) {
+    //   let element = arr[i]
+    //   if (agencyID === element.agency_id) {
+    //     setJobApplyButtonState(true)
+    //     setJobApplyButtonText("Already applied")
+    //   }
+    // }
   }, [job])
 
   const applyForJob = async (userID, jobID) => {
     // console.log(agencyID)
     // localStorage
-    const API_URL_AGENCY_APPLYJOB = `/api/v1/jobs?userId=${userID}&agencyId=${agencyID}&jobId=${jobID}`;
+    const API_URL_AGENCY_APPLYJOB = `/api/v1/agency/${agencyID}/jobs/${jobID}/apply`;
+    // const API_URL_AGENCY_APPLYJOB = `/api/v1/jobs?userId=${userID}&agencyId=${agencyID}&jobId=${jobID}`;
     try {
-      const response = await axios.get(API_URL_AGENCY_APPLYJOB);
+      const response = await axios.post(API_URL_AGENCY_APPLYJOB);
       console.log(response.data);
       // const destructedData = response.data.data; // array of jobs
       // if (response.data.message == "success") {
