@@ -107,7 +107,7 @@ function RegisterCard() {
       const receivedData = response.data.data;
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);
-      localStorage.setItem("Mongo_ID", receivedData.id);
+      localStorage.setItem("Mongo_ID", receivedData._id);
       if (response.data.message == "success") {
         if (selectedChip == "agency") {
           router.push("/frontend/screens/AgencyHomeScreen");
