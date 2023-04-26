@@ -11,8 +11,19 @@ const agencyJobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  agencyId: {
-    type: String,
+  agency: {
+    type: {
+      name: {
+        type: String,
+      },
+      _id: {
+        type: String,
+      },
+      avatar: {
+        type: String,
+      },
+    },
+    ref: "Agency",
   },
   status: {
     type: String,
