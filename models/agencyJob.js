@@ -27,7 +27,7 @@ const agencyJobSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["active", "inactive", "hold"],
+    enum: ["active", "inactive", "hold", "completed"],
     required: true,
   },
   salary: {
@@ -40,7 +40,7 @@ const agencyJobSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  hired_freelancer: {
+  hired_freelancers: {
     type: [
       {
         freelancer_id: {
