@@ -73,6 +73,23 @@ const freelancerSchema = mongoose.Schema({
       ref: "Agency",
     },
   ],
+  jobs_hired :{
+    type: [{
+      job_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AgencyJobs",
+      },
+      hired_date:{
+        type: Date,
+        default: Date.now,
+      },
+      agency_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Agency",
+      },
+    }],
+    default: []
+  },
   jobApplications: [
     {
       jobId: {
