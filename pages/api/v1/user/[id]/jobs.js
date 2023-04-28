@@ -58,25 +58,28 @@ export default async function postJob(req, res) {
           created_on: new Date(),
           updated_on: new Date(),
         };
-
-        user.jobs.push(job);
-        const savedUser = await user.save();
-
+        
         job = new Job(job);
+        
+        user.jobs.push({
+          _id: job._id,
+          posted_date: Date.now(),
+        });
 
-        job._id = savedUser.jobs[savedUser.jobs.length - 1]._id;
+        await user.save();
 
         await job.save();
 
         res.status(200).json({
           status: 200,
           message: "success",
-          data: savedUser,
+          data: "Posted job successfully",
         });
       } catch (e) {
         res.status(500).json({
           status: 500,
-          message: e.message,
+          message: "failure",
+          data: e.message,
         });
       }
       return;

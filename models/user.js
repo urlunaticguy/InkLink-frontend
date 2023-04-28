@@ -37,9 +37,18 @@ const userSchema = mongoose.Schema({
       message: "Please enter a long password",
     },
   },
-  jobs: [{
-    type: jobSchema
-  }],
+  jobs: {
+    type: [{
+      posted_date: Date,
+      _id: mongoose.Schema.Types.ObjectId,
+      hired:{
+        type: Boolean,
+        default: false,
+      },
+    }],
+    ref: "Job",
+    default: []
+  },
   tags: {
     type: [String],
     trim: true,
