@@ -67,6 +67,7 @@ const AgencyOneJob = (props) => {
     }
     if (localStorage.getItem("onejobBool") === "Applied") {
       setJobApplyButtonText("Already Applied")
+      setJobApplyButtonState(true)
     }
     setAgencyID(localStorage.getItem("Mongo_ID"))
   }, []);
@@ -77,37 +78,27 @@ const AgencyOneJob = (props) => {
     if (arr === undefined) {
       arr = [{ agency_id : "sadacdnhan"}]
     }
-
-    // for (let i = 0; i < arr.length; i++) {
-    //   let element = arr[i]
-    //   if (agencyID === element.agency_id) {
-    //     setJobApplyButtonState(true)
-    //     setJobApplyButtonText("Already applied")
-    //   }
-    // }
   }, [job])
 
-  const applyForJob = async (userID, jobID) => {
-    // console.log(agencyID)
-    // localStorage
+  const applyForJob = async (jobID) => {
+    // console.log("ABEY")
+    console.log(agencyID)
     const API_URL_AGENCY_APPLYJOB = `/api/v1/agency/${agencyID}/jobs/${jobID}/apply`;
     // const API_URL_AGENCY_APPLYJOB = `/api/v1/jobs?userId=${userID}&agencyId=${agencyID}&jobId=${jobID}`;
     try {
       const response = await axios.post(API_URL_AGENCY_APPLYJOB);
       console.log(response.data);
       // const destructedData = response.data.data; // array of jobs
-      // if (response.data.message == "success") {
-      //   console.log("Successfully fetched All Jobs.");
+      if (response.data.message == "success") {
+        console.log("Successfully applied for JOB.");
+        setJobApplyButtonText("Applied successfully.")
+        setJobApplyButtonState(true)
       //   setAllJobs(destructedData);
-      // }
+      }
     } catch (error) {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   console.log(props.job)
-  // }, [props])
 
   const classes = useStyles();
   return (
@@ -152,7 +143,7 @@ const AgencyOneJob = (props) => {
               />
             ))}
             <div>
-              <button disabled={jobApplyButtonState} onClick={() => {applyForJob(job.userId, job._id)}} className={styles.applyButton}>{jobApplyButtonText}</button>
+              <button disabled={jobApplyButtonState} onClick={() => {applyForJob(job._id)}} className={styles.applyButton}>{jobApplyButtonText}</button>
             </div>
         </Grid>
       </Grid>

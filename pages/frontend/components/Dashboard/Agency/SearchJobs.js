@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TableContainer,
   Table,
@@ -13,7 +13,6 @@ import axios from "axios";
 
 const AgencySearchJobs = (props) => {
   const router = useRouter();
-
   const [jobApplyBoolArray, setJobApplyBoolArray] = useState([false, false, false, false, false, false, false, false, false, false])
 
   const dateInRightFormat = (dateString) => {
@@ -26,16 +25,6 @@ const AgencySearchJobs = (props) => {
     return formattedDate;
   };
 
-  // const agencyJobRelationStatus = (applicantsArray) => {
-  //   let agencyMongoID = localStorage.getItem("Mongo_ID");
-  //   for (let i = 0; i < applicantsArray.length; i++) {
-  //     if (agencyMongoID === applicantsArray[i].agency_id) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // };
-
   const fetchJobAppliedStatus = async (jobID, index) => {
     let JOBID = jobID;
     if (JOBID === undefined) {
@@ -43,36 +32,40 @@ const AgencySearchJobs = (props) => {
     }
     let agencyID = localStorage.getItem("Mongo_ID");
     let arr = jobApplyBoolArray;
-    // console.log(arr)
     const API_URL_AGENCY_JOB_APPLIED_STATUS = `/api/v1/agency/${agencyID}/jobs/${JOBID}/apply`;
     try {
       const response = await axios.get(API_URL_AGENCY_JOB_APPLIED_STATUS);
-      console.log(response.data);
-      if (response.data.data === "false") {
-        console.log("HEMLO")
-        arr[index] = false;
+      // console.log(response.data);
+      if (response.data.data === "true") {
+        setJobApplyBoolArray([])
+        arr[index] = true;
         setJobApplyBoolArray(arr);
       } else {
-        arr[index] = true;
+        setJobApplyBoolArray([])
+        arr[index] = false;
         setJobApplyBoolArray(arr)
       }
-      // const destructedData = response.data.data; // array of jobs
-      // if (response.data.message == "success") {
-      //   console.log("Successfully fetched All Jobs.");
-      //   setAllJobs(destructedData);
-      // }
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    if (props.data) {
+      for (let i = 0; i < props.data.length; i++) {
+        fetchJobAppliedStatus(props.data[i]._id, i)
+      }
+    }
+  }, [props.data])
+
   const navigateToOneJob = (jobObject, index) => {
-    console.log(jobObject)
+    // console.log(jobObject)
     let abc = jobApplyBoolArray[index] ? "Applied" : "Not Applied";
     localStorage.setItem("onejob", JSON.stringify(jobObject));
     localStorage.setItem("onejobBool", abc)
     router.push("/frontend/components/AgencyDashboards/DashboardOneJob");
   };
+
   return (
     <TableContainer className={styles.root} component={Paper}>
       <Table>
@@ -121,11 +114,6 @@ const AgencySearchJobs = (props) => {
                 <TableCell>{job.location}</TableCell>
                 <TableCell>{job.salary}</TableCell>
                 <TableCell>{job.details}</TableCell>
-                {/* <TableCell>
-                  {agencyJobRelationStatus(job.applicants)
-                    ? "Applied"
-                    : "Not Applied"}
-                </TableCell> */}
                 <TableCell>
                   {jobApplyBoolArray[index]
                     ? "Applied"

@@ -83,7 +83,7 @@ function LoginCard() {
     };
     try {
       const response = await axios.post(API_URL_LOGIN, loginData);
-      console.log(response.data);
+      // console.log(response.data);
       const receivedData = response.data.data;
       localStorage.setItem("isSignedIn", true);
       localStorage.setItem("userType", selectedChip);

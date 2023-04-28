@@ -7,8 +7,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "@/styles/components/Dashboard/JobsTable.module.css";
+import { useRouter } from "next/router";
 
 export default function JobsTable(props) {
+  const router = useRouter()
+  let navigateToViewApplicants = (data) => {
+    console.log(data._id)
+    localStorage.setItem("viewJobApplicantsJOBID", data._id)
+    router.push("/frontend/components/UserDashboards/DashboardViewApplicants")
+  }
   return (
     <TableContainer style={{ height: "90vh" }} component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -22,6 +29,7 @@ export default function JobsTable(props) {
             <TableCell align="right">Salary</TableCell>
             <TableCell align="right">Location</TableCell>
             <TableCell align="right">Frequency</TableCell>
+            <TableCell align="right">Applicants</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -44,6 +52,20 @@ export default function JobsTable(props) {
                 <TableCell align="right">₹ {row.salary}</TableCell>
                 <TableCell align="right">{row.location}</TableCell>
                 <TableCell align="right">{row.frequency}</TableCell>
+                <TableCell align="right">
+                  {row.applicants.length == 0 &&
+                    <>
+                      <p>None</p>
+                    </>
+                  }
+                  {
+                    row.applicants.length > 0 &&
+                      <>
+                        <p>{row.applicants.length}</p>
+                        <button onClick={() => {navigateToViewApplicants(row)}} className={styles.viewApplicationButton}>View applications</button>
+                      </>
+                  }
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>

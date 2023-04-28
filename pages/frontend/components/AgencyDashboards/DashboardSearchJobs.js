@@ -7,12 +7,13 @@ import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.c
 
 function DashboardSearchJobs() {
   const [allJobs, setAllJobs] = useState([]);
+
   useEffect(() => {
     const fetchClientJobs = async () => {
       const API_URL_CLIENT_GETJOBS = `/api/v1/agency/jobs`;
       try {
         const response = await axios.get(API_URL_CLIENT_GETJOBS);
-        console.log(response.data);
+        // console.log(response.data);
         const destructedData = response.data.data; // array of jobs
         if (response.data.message == "success") {
           console.log("Successfully fetched All Jobs.");
@@ -24,6 +25,7 @@ function DashboardSearchJobs() {
     };
     fetchClientJobs();
   }, []);
+  
   return (
     <div style={{ display: "flex" }}>
       <NavbarAgency name="SEARCH_JOBS" type="Agency" />
