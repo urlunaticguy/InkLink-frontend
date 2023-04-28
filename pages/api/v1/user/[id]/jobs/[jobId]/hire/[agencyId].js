@@ -2,6 +2,7 @@ import connectDB from "@/pages/api/db";
 import User from "../../../../../../../../models/user";
 import { Job } from "../../../../../../../../models/job";
 import Agency from "@/models/agency";
+import { isUndefined } from "swr/_internal";
 
 connectDB();
 
@@ -43,9 +44,14 @@ export default async function jobFunc(req, res) {
 
       let job = await Job.findById(jobId);
 
-      if (!job.hired_agency.agency_id) {
+      // console.log(job.hired_agency.agency === undefined);
+
+      if (job.hired_agency.agency === undefined) {
         if (
-          !(await Job.findOne({ _id: jobId, "applicants.agency_id": agencyId }))
+          !(await Job.findOne({
+            _id: jobId,
+            "applicants.agency._id": agencyId,
+          }))
         ) {
           return res.status(400).json({
             status: 400,
@@ -54,17 +60,20 @@ export default async function jobFunc(req, res) {
         }
 
         job.hired_agency = {
-            agency_id: agencyId,
-            hired_date: Date.now(),
-            contact_person: agency.name,
+          agency: {
+            _id: agencyId,
+            name: agency.name,
             email: agency.email,
-            duration
+            avatar: agency.avatar,
+          },
+          hired_date: Date.now(),
+          duration,
         };
 
-        user.jobs[jobIndex].hired_agency.agency_id = agencyId;
+        // user.jobs[jobIndex].hired_agency.agency_id = agencyId;
 
         const agencyIndex = job.applicants.findIndex(
-          (agency) => agency.agency_id.toString() === agencyId
+          (agency) => agency.agency._id.toString() === agencyId
         );
 
         // console.log(agencyIndex);
@@ -80,14 +89,15 @@ export default async function jobFunc(req, res) {
         }
 
         agency.jobs_hired.push({
-            job_id: jobId,
-            hired_date: Date.now(),
-            user_id: userId
+          _id: jobId,
+          hired_date: Date.now(),
+          user_id: userId,
         });
 
         job.updated_on = Date.now();
+        job.status = "completed";
 
-        job = await job.save();
+        await job.save();
 
         await user.save();
 
@@ -96,7 +106,7 @@ export default async function jobFunc(req, res) {
         res.status(200).json({
           status: 200,
           message: "success",
-          data: job,
+          data: `Succesfully hired ${agency.name} for the job`,
         });
       } else {
         res.status(409).json({
@@ -109,13 +119,15 @@ export default async function jobFunc(req, res) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: "Server error",
+        message: "failure",
+        data: "Server error",
       });
     }
   } else {
     return res.status(405).json({
       status: 405,
-      message: "Method not allowed",
+      message: "failure",
+      data: "Method not allowed",
     });
   }
 }

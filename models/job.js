@@ -29,7 +29,7 @@ const jobSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['active', 'inactive', 'hold'],
+    enum: ['active', 'inactive', 'hold', 'completed'],
     required: true
   },
   salary: {
@@ -43,8 +43,13 @@ const jobSchema = mongoose.Schema({
     trim: true,
   },
   hired_agency:{
-    agency_id: {
-      type: mongoose.Schema.Types.ObjectId,
+    agency: {
+      type: {
+        _id: mongoose.Schema.Types.ObjectId,
+        name: String,
+        email: String,
+        avatar: String,
+      },
       ref: "Agency"
     },
     hired_date: {
@@ -52,14 +57,6 @@ const jobSchema = mongoose.Schema({
     },
     duration: {
       type: String,
-    },
-    contact_person: {
-      type: String,
-      trim: true,
-    },
-    email: {
-      type: String,
-      trim: true,
     },
   },
   location: {
@@ -78,8 +75,12 @@ const jobSchema = mongoose.Schema({
   },
   applicants:{
     type: [{
-      agency_id: {
-        type: mongoose.Schema.Types.ObjectId,
+      agency: {
+        type: {
+          _id: mongoose.Schema.Types.ObjectId,
+          name: String,
+          avatar: String,
+        },
         ref: "Agency",
       },
       status: {
