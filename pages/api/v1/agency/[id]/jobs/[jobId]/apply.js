@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         }
 
         if (
-          await Job.findOne({ _id: jobId, "applicants.agency_id": id }).lean()
+          await Job.findOne({ _id: jobId, "applicants.agency._id": id }).lean()
         ) {
           return res.status(400).json({
             status: 400,
@@ -41,18 +41,26 @@ export default async function handler(req, res) {
           });
         }
 
-        job.applicants.push({ agency_id: agency._id });
+        job.applicants.push({ 
+          agency: {
+          _id: agency._id,
+          name: agency.name,
+          avatar: agency.avatar,
+        },
+       });
 
-        user.jobs
-          .find((job) => job._id.toString() === jobId)
-          .applicants.push({ agency_id: agency._id });
+        // user.jobs
+        //   .find((job) => job._id.toString() === jobId)
+        //   .applicants.push({ agency_id: agency._id });
 
-        await user.save();
+        // await user.save();
 
         // // Save the updated job to the database
         await job.save();
 
-        agency.jobs_applied.push(jobId);
+        agency.jobs_applied.push({
+          _id: jobId,
+        });
         await agency.save();
 
         return res.status(200).json({
@@ -69,7 +77,7 @@ export default async function handler(req, res) {
 
     case "GET":
       if (
-        await Job.findOne({ _id: jobId, "applicants.agency_id": id }).lean()
+        await Job.findOne({ _id: jobId, "applicants.agency._id": id }).lean()
       ) {
         return res.status(200).json({
           status: 200,

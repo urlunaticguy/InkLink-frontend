@@ -56,12 +56,26 @@ const agencySchema = new mongoose.Schema({
     default: "agency"
   },
   jobs_applied :{
-    type: [String],
+    type: [{
+      applied_date:{
+        type: Date,
+        default: Date.now,
+      },
+      _id:{
+        type: String,
+        ref: "Jobs",
+      },
+      hired:{
+        type: Boolean,
+        default: false,
+      },
+    }],
+    ref: "AgencyJob",
     default: []
   },
   jobs_hired :{
     type: [{
-      job_id:{
+      _id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Jobs",
       },
