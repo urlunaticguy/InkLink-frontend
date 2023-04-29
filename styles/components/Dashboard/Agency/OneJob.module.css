@@ -10,3 +10,41 @@
 .applyButton:hover {
     background-color: coral;
 }
+
+.div {
+    overflow-y: scroll;
+  }
+  
+  /* Hide scrollbar */
+  .div::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .div::-moz-scrollbar {
+    display: none;
+  }
+  
+  .div::-o-scrollbar {
+    display: none;
+  }
+  
+  .div::-ms-scrollbar {
+    display: none;
+  }
+  
+  .div::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  
+  .div::-moz-scrollbar-thumb {
+    display: none;
+  }
+  
+  .div::-o-scrollbar-thumb {
+    display: none;
+  }
+  
+  .div::-ms-scrollbar-thumb {
+    display: none;
+  }
+  

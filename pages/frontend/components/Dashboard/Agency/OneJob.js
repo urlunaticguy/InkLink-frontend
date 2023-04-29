@@ -102,7 +102,7 @@ const AgencyOneJob = (props) => {
 
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={[classes.root, styles.div].join(" ")}>
       <Typography variant="h1" className={classes.title}>
         {job.title}
       </Typography>

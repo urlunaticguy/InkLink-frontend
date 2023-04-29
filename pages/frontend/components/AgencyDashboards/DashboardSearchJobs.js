@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import NavbarAgency from "../Dashboard/Agency/Navbar";
 import AppBar from "../Dashboard/AppBar";
 import axios from "axios";
 import AgencySearchJobs from "../Dashboard/Agency/SearchJobs";
 import styles from "@/styles/components/UserDashboard/DashboardViewJobs.module.css";
+import MyContext from "@/context/MyContext";
 
 function DashboardSearchJobs() {
-  const [allJobs, setAllJobs] = useState([]);
+  const { jobsSearchAgency, updateJobsSearchAgency } = useContext(MyContext);
 
   useEffect(() => {
     const fetchClientJobs = async () => {
@@ -17,7 +18,7 @@ function DashboardSearchJobs() {
         const destructedData = response.data.data; // array of jobs
         if (response.data.message == "success") {
           console.log("Successfully fetched All Jobs.");
-          setAllJobs(destructedData);
+          updateJobsSearchAgency(destructedData)
         }
       } catch (error) {
         console.error(error);
@@ -32,7 +33,7 @@ function DashboardSearchJobs() {
       <div style={{ width: "100%" }}>
         <AppBar title="Search Jobs" />
         <div className={styles.example}>
-          <AgencySearchJobs data={allJobs} />
+          <AgencySearchJobs />
         </div>
       </div>
     </div>
