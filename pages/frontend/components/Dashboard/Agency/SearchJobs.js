@@ -48,7 +48,7 @@ const AgencySearchJobs = () => {
         <tbody>
           {jobsSearchAgency &&
             jobsSearchAgency.map((job, index) => (
-              <SearchJobsTableRow job={job} index={index} />
+              <SearchJobsTableRow key={index} job={job} index={index} />
             ))}
         </tbody>
       </Table>
