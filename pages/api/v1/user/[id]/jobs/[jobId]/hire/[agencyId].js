@@ -97,6 +97,8 @@ export default async function jobFunc(req, res) {
         job.updated_on = Date.now();
         job.status = "completed";
 
+        user.jobs[jobIndex].hired = true;
+
         await job.save();
 
         await user.save();

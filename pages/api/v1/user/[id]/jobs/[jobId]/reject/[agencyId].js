@@ -2,7 +2,6 @@ import connectDB from "@/pages/api/db";
 import User from "../../../../../../../../models/user";
 import { Job } from "../../../../../../../../models/job";
 import Agency from "@/models/agency";
-import { isUndefined } from "swr/_internal";
 
 connectDB();
 
@@ -80,7 +79,7 @@ export default async function jobFunc(req, res) {
       res.status(200).json({
         status: 200,
         message: "success",
-        data: `Succesfully rejected ${agency.name} for the job`,
+        data: `Successfully rejected ${agency.name} for the job`,
       });
     } catch (error) {
       console.error(error);
