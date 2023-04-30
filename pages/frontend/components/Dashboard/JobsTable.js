@@ -72,7 +72,7 @@ export default function JobsTable(props) {
               //     } */}
               //   </TableCell>
               // </TableRow>
-              <JobsTableRow jobID={row._id} index={index} />
+              <JobsTableRow key={index} jobID={row._id} index={index} />
             ))}
         </TableBody>
       </Table>
