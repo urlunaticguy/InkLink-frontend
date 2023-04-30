@@ -6,6 +6,7 @@
 
 import connectDB from "@/pages/api/db";
 import User from "../../../../../../models/user";
+import { Job } from "@/models/job";
 
 connectDB();
 
@@ -34,14 +35,15 @@ export default async function jobFunc(req, res) {
       });
     }
 
-    const job = user.jobs[jobIndex];
+    // const job = user.jobs[jobIndex];
+    const job = await Job.findById(jobId);
 
     switch (method) {
       case "GET":
         res.status(200).json({
           status: 200,
           message: "success",
-          job,
+          data: job,
         });
         return;
 

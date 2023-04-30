@@ -15,6 +15,7 @@ function DashboardViewJobs() {
         const response = await axios.get(API_URL_CLIENT_GETJOBS);
         // console.log(response.data);
         const destructedData = response.data.data; // array of jobs
+        console.log(destructedData)
         if (response.data.message == "success") {
           console.log("Successfully fetched Client Jobs.");
           setClientJobsArray(destructedData);

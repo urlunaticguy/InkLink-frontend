@@ -59,7 +59,7 @@ export default async function jobFunc(req, res) {
 
       job.applicants[agencyIndex].status = "rejected";
 
-      if (job.hired_agency.agency._id.toString() === agencyId) {
+      if (job.hired_agency.agency && job.hired_agency.agency._id.toString() === agencyId) {
         job.hired_agency = {};
 
         const jobHiredIndex = agency.jobs_hired.findIndex(
