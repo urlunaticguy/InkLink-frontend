@@ -49,7 +49,7 @@ export default async function hire(req, res) {
       }
 
         if (
-          !(await AgencyJob.findOne({ _id: jobId, "applicants.freelancer_id": freelancerId }))
+          !(await AgencyJob.findOne({ _id: jobId, "applicants._id": freelancerId }))
         ) {
           return res.status(400).json({
             status: 400,
@@ -58,7 +58,7 @@ export default async function hire(req, res) {
         }
 
         job.hired_freelancers.push( {
-            freelancer_id: freelancerId,
+            _id: freelancerId,
             hired_date: Date.now(),
             contact_person: freelancer.name,
             email: freelancer.email,
@@ -68,7 +68,7 @@ export default async function hire(req, res) {
         // user.jobs[jobIndex].hired_agency.agency_id = agencyId;
 
         const freelancerIndex = job.applicants.findIndex(
-          (freelancer) => freelancer.freelancer_id.toString() === freelancerId
+          (freelancer) => freelancer._id.toString() === freelancerId
         );
 
         // console.log(agencyIndex);
@@ -96,7 +96,7 @@ export default async function hire(req, res) {
         res.status(200).json({
           status: 200,
           message: "success",
-          data: job,
+          data: `Successfully hired ${agency.name} for this job`,
         });
     } catch (error) {
       console.error(error);

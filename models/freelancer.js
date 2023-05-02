@@ -90,7 +90,7 @@ const freelancerSchema = mongoose.Schema({
     }],
     default: []
   },
-  jobApplications: [
+  jobs_applied: [
     {
       jobId: {
         type: mongoose.Schema.Types.ObjectId,
