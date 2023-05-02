@@ -43,7 +43,7 @@ export default async function hire(req, res) {
       let job = await AgencyJob.findById(jobId);
 
         if (
-          !(await AgencyJob.findOne({ _id: jobId, "applicants.freelancer_id": freelancerId }))
+          !(await AgencyJob.findOne({ _id: jobId, "applicants._id": freelancerId }))
         ) {
           return res.status(400).json({
             status: 400,
@@ -52,7 +52,7 @@ export default async function hire(req, res) {
         }
 
         const freelancerIndex = job.applicants.findIndex(
-            (freelancer) => freelancer.freelancer_id.toString() === freelancerId
+            (freelancer) => freelancer._id.toString() === freelancerId
           );
 
         job.applicants[freelancerIndex].status = "shortlisted";
@@ -64,7 +64,7 @@ export default async function hire(req, res) {
         res.status(200).json({
           status: 200,
           message: "success",
-          data: job,
+          data: `Successfully shortlisted ${agency.name} for this job`,
         });
     } catch (error) {
       console.error(error);

@@ -2,17 +2,14 @@
 //Endpoint :- /api/v1/freelancer/{freelancerID}/jobs/{jobID}/apply
 
 import { AgencyJob } from "../../../../../../../models/agencyJob";
-import Agency from "../../../../../../../models/agency";
 import connectDB from "../../../../../db";
 import Freelancer from "../../../../../../../models/freelancer";
 
 connectDB();
 export default async function handler(req, res) {
-  const {id, jobId } = req.query;
+  const { id, jobId } = req.query;
 
   const job = await AgencyJob.findById(jobId);
-
-  const agency = await Agency.findById(job.agencyId);
 
   const freelancer = await Freelancer.findById(id);
 
@@ -24,34 +21,38 @@ export default async function handler(req, res) {
   }
 
   try {
-
     if (freelancer.role === "freelancer") {
       if (!job.applicants) {
         job.applicants = [];
       }
 
-      if (await AgencyJob.findOne({ _id: jobId, "applicants.freelancer_id": id })) {
-        return res
-          .status(400)
-          .json({
-            status: 400,
-            message: "You have already applied for this job",
-          });
+      if (
+        await AgencyJob.findOne({
+          _id: jobId,
+          "applicants._id": id,
+        }).lean()
+      ) {
+        return res.status(400).json({
+          status: 400,
+          message: "You have already applied for this job",
+        });
       }
 
-      job.applicants.push({freelancer_id: id});
+      job.applicants.push({
+        _id: id,
+        status: "pending",
+        appliedDate: Date.now(),
+      });
 
-      agency.jobs
-        .find((job) => job._id.toString() === jobId)
-        .applicants.push({agency_id: agency._id});
-
-      await user.save();
-
-      // // Save the updated job to the database
       await job.save();
 
-      agency.jobs_applied.push(jobId);
-      await agency.save();
+      freelancer.jobs_applied.push({
+        jobId,
+        status: "pending",
+        appliedDate: Date.now(),
+      });
+
+      await freelancer.save();
 
       return res.status(200).json({
         status: 200,
