@@ -54,12 +54,13 @@ function JobsTableRow(props) {
                         <TableCell align="right">{jobData.frequency}</TableCell>
                         <TableCell align="right">
                             applicants
-                        {jobData.applicants.length == 0 &&
-                            <>
-                                <p>None</p>
-                            </>
+                        {jobData &&
+                            jobData.applicants.length == 0 &&
+                                <>
+                                    <p>None</p>
+                                </>
                         }
-                        {
+                        {jobData &&
                             jobData.applicants.length > 0 &&
                             <>
                                 <p>{jobData.applicants.length}</p>

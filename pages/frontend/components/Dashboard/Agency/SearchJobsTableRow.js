@@ -9,6 +9,18 @@ function SearchJobsTableRow(props) {
     const { jobsSearchAgency, updateJobsSearchAgency, jobsSearchAgencyBools, updateNew } = useContext(MyContext);
     const router = useRouter()
     const [jobAppliedStatus, setJobAppliedStatus] = useState(false)
+    const [job, setJob] = useState(
+        {
+            created_on: "2023-05-02T13:09:35.925Z",
+            details: "placeholder",
+            frequency: "placeholder",
+            location: "placeholder",
+            salary: 0,
+            status: "placeholder",
+            type: "sample type",
+            title: "sample title",
+        })
+
     const dateInRightFormat = (dateString) => {
         const dateObj = new Date(dateString);
         const formattedDate = dateObj.toLocaleDateString("en-GB", {
@@ -40,9 +52,14 @@ function SearchJobsTableRow(props) {
         // if (props.index) {
             console.log("Hello for id ", jobsSearchAgency[props.index]._id)
             fetchJobAppliedStatus(props.job._id, props.index);
-            fetchJobAppliedStatus(jobsSearchAgency[props.index]._id, props.index);
+            setJob(props.job)
+            // fetchJobAppliedStatus(jobsSearchAgency[props.index]._id, props.index);
         // }
       }, [props])
+
+      useEffect(() => {
+        console.log(job)
+      }, [job])
 
       const navigateToOneJob = (jobObject, index) => {
         let abc = jobAppliedStatus ? "Applied" : "Not Applied";
@@ -61,22 +78,22 @@ function SearchJobsTableRow(props) {
                 {props.index + 1}
             </TableCell>
             <TableCell>
-                {dateInRightFormat(props.job.created_on)}
+                {dateInRightFormat(job.created_on)}
             </TableCell>
             <TableCell>
-                {props.job.title}
+                {job.title}
             </TableCell>
             <TableCell>
-                {props.job.type}
+                {job.type}
             </TableCell>
             <TableCell>
-                {props.job.location}
+                {job.location}
             </TableCell>
             <TableCell>
-                {props.job.salary}
+                {job.salary}
             </TableCell>
             <TableCell>
-                {props.job.details}
+                {job.details}
             </TableCell>
             <TableCell>
                 {jobAppliedStatus ? "Applied" : "Not Applied"}
