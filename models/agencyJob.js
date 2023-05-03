@@ -43,7 +43,7 @@ const agencyJobSchema = mongoose.Schema({
   hired_freelancers: {
     type: [
       {
-        freelancer_id: {
+        _id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Freelancer",
         },
@@ -81,7 +81,7 @@ const agencyJobSchema = mongoose.Schema({
   applicants: {
     type: [
       {
-        freelancer_id: {
+        _id: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Freelancer",
         },

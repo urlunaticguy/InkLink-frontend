@@ -43,7 +43,7 @@ export default async function postJob(req, res) {
 
       if (
         agency.jobs_hired.find(
-          (job) => job.job_id.toString() === jobId.toString()
+          (job) => job._id.toString() === jobId.toString()
         ) 
       ) {
         try {
