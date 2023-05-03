@@ -20,6 +20,7 @@ function SearchJobsTableRow(props) {
             type: "sample type",
             title: "sample title",
         })
+    const [jobIndex, setJobIndex] = useState(0)
 
     const dateInRightFormat = (dateString) => {
         const dateObj = new Date(dateString);
@@ -50,16 +51,18 @@ function SearchJobsTableRow(props) {
 
       useEffect(() => {
         // if (props.index) {
-            console.log("Hello for id ", jobsSearchAgency[props.index]._id)
-            fetchJobAppliedStatus(props.job._id, props.index);
             setJob(props.job)
+            setJobIndex(props.index)
+            // console.log("Hello for id ", jobsSearchAgency[props.index]._id)
+            // fetchJobAppliedStatus(props.job._id, props.index);
             // fetchJobAppliedStatus(jobsSearchAgency[props.index]._id, props.index);
         // }
       }, [props])
 
       useEffect(() => {
         console.log(job)
-      }, [job])
+        fetchJobAppliedStatus(job._id, jobIndex);
+      }, [job, jobIndex])
 
       const navigateToOneJob = (jobObject, index) => {
         let abc = jobAppliedStatus ? "Applied" : "Not Applied";
@@ -70,12 +73,12 @@ function SearchJobsTableRow(props) {
   return (
     <TableRow
         onClick={() => {
-            navigateToOneJob(props.job, props.index);
+            navigateToOneJob(job, jobIndex);
         }}
         className={styles.row}
-        key={props.job._id}>
+        key={job._id}>
             <TableCell>
-                {props.index + 1}
+                {jobIndex + 1}
             </TableCell>
             <TableCell>
                 {dateInRightFormat(job.created_on)}
