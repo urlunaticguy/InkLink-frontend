@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const freelancerId = req.query.id;
 
   try {
-    const note = {
+    let note = {
       title,
       content,
       color,
@@ -28,13 +28,16 @@ export default async function handler(req, res) {
         })
     }
 
-    freelancer.notes.push(note);
+    note = await new Note(note).save();
+
+    freelancer.notes.push(note._id.toString());
+
     await freelancer.save();
 
-    return res.status(200).json({
-      status: 200,
+    return res.status(201).json({
+      status: 201,
       message: "success",
-      data: note,
+      data: 'Succesfully created a note',
     });
   } catch (error) {
     console.log(error);

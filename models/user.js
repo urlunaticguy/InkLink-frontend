@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { jobSchema } from "./job";
 
 const userSchema = mongoose.Schema({
   name: {

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const DB = "mongodb+srv://bharatahuja:skillvalley@cluster0.atz7e6q.mongodb.net/?retryWrites=true&w=majority";
 
@@ -15,5 +15,4 @@ async function connectDB() {
     process.exit(1); 
   }
 }
-
-export default connectDB;
+module.exports = connectDB;

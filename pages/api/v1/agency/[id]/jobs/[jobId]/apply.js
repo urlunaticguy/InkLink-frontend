@@ -16,8 +16,6 @@ export default async function handler(req, res) {
     case "POST":
       const job = await Job.findById(jobId);
 
-      const user = await User.findById(job.user._id);
-
       if (!job) {
         return res.status(404).json({
           status: 404,
@@ -49,13 +47,6 @@ export default async function handler(req, res) {
         },
        });
 
-        // user.jobs
-        //   .find((job) => job._id.toString() === jobId)
-        //   .applicants.push({ agency_id: agency._id });
-
-        // await user.save();
-
-        // // Save the updated job to the database
         await job.save();
 
         agency.jobs_applied.push({

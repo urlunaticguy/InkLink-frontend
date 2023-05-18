@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Note, NoteSchema } from "./note";
+const {NoteSchema} = require('./note');
 
 const freelancerSchema = mongoose.Schema({
   name: {
@@ -66,7 +66,10 @@ const freelancerSchema = mongoose.Schema({
     type: String,
     default: "freelancer",
   },
-  notes: [NoteSchema],
+  notes: {
+    type: [String],
+    default: []
+  },
   agency: [
     {
       type: mongoose.Schema.Types.ObjectId,
