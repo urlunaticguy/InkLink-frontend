@@ -32,6 +32,19 @@ const ChecklistItemSchema = new mongoose.Schema({
   },
 });
 
+const CollaboratorSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Freelancer",
+  },
+  name: {
+    type: String,
+  },
+  avatar: {
+    type: String,
+  },
+});
+
 const NoteSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -79,14 +92,7 @@ const NoteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  collaborators: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-  },
+  collaborators: [CollaboratorSchema],
   permissions: {
     type: Map,
     of: String,
@@ -101,4 +107,4 @@ const NoteSchema = new mongoose.Schema({
 
 const Note = mongoose.models.Note || mongoose.model("Note", NoteSchema);
 
-export { NoteSchema, Note };
+module.exports =  { NoteSchema, Note };
