@@ -1,14 +1,14 @@
+//stop the hiring process
+
 import connectDB from "@/pages/api/db";
 import Agency from "@/models/agency";
 import { AgencyJob } from "@/models/agencyJob";
-import Freelancer from "@/models/freelancer";
 
 connectDB();
 
 export default async function hire(req, res) {
   const { method } = req;
   const{id, jobId } = req.query;
-  const duration = req.body.duration;
 
   if (method === "PUT") {
     try {
@@ -51,7 +51,7 @@ export default async function hire(req, res) {
         res.status(200).json({
           status: 200,
           message: "success",
-          data: job,
+          data: "Successfully stopped hiring for the job",
         });
     } catch (error) {
       console.error(error);

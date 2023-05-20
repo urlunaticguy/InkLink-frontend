@@ -1,3 +1,6 @@
+//add a freelancer to a note as a collaborator
+//delete a freelancer from a note as a collaborator
+
 import Freelancer from "@/models/freelancer";
 import { Note } from "@/models/note";
 import connectDB from "@/pages/api/db";

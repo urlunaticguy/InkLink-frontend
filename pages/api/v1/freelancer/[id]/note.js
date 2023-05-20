@@ -1,3 +1,5 @@
+//add a note 
+
 import connectDB from "@/pages/api/db";
 import { Note } from "../../../../../models/note";
 import Freelancer from "../../../../../models/freelancer";
