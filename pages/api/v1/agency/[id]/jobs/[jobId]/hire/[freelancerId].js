@@ -1,3 +1,5 @@
+//hire a freelancer for the job that is posted by the agency
+
 import connectDB from "@/pages/api/db";
 import Agency from "@/models/agency";
 import { AgencyJob } from "@/models/agencyJob";
@@ -74,8 +76,6 @@ export default async function hire(req, res) {
         // console.log(agencyIndex);
 
         job.applicants[freelancerIndex].status = "hired";
-
-        // console.log(job.applicants[agencyIndex]);
 
         if(!freelancer.jobs_hired){
             freelancer.jobs_hired = [];

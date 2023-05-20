@@ -4,7 +4,6 @@
 
 import { Job } from "../../../../../../../models/job";
 import Agency from "../../../../../../../models/agency";
-import User from "../../../../../../../models/user";
 import connectDB from "../../../../../db";
 
 connectDB();

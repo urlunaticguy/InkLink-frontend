@@ -1,4 +1,5 @@
-import Freelancer from "@/models/freelancer";
+//get all the collaborators of a specific note
+
 import { Note } from "@/models/note";
 import connectDB from "@/pages/api/db";
 

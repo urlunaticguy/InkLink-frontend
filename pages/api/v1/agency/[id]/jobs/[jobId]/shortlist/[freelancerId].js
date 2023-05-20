@@ -1,3 +1,5 @@
+//shortlist a freelancer for the job that is posted by the agency
+
 import connectDB from "@/pages/api/db";
 import Agency from "@/models/agency";
 import { AgencyJob } from "@/models/agencyJob";
