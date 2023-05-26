@@ -30,7 +30,10 @@ export default async function handler(req, res) {
         }
 
         if (
-          await Job.findOne({ _id: jobId, "applicants.agency._id": id }).lean()
+          await Job.findOne({
+            _id: jobId,
+            "applicants.agency._id": id,
+          }).lean()
         ) {
           return res.status(400).json({
             status: 400,
@@ -38,13 +41,13 @@ export default async function handler(req, res) {
           });
         }
 
-        job.applicants.push({ 
+        job.applicants.push({
           agency: {
-          _id: agency._id,
-          name: agency.name,
-          avatar: agency.avatar,
-        },
-       });
+            _id: agency._id,
+            name: agency.name,
+            avatar: agency.avatar,
+          },
+        });
 
         await job.save();
 
