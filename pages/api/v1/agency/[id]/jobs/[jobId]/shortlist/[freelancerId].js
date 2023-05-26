@@ -4,6 +4,7 @@ import connectDB from "@/pages/api/db";
 import Agency from "@/models/agency";
 import { AgencyJob } from "@/models/agencyJob";
 import Freelancer from "@/models/freelancer";
+// import { agencyOnly } from "@/middlewares/agencyOnly";
 
 connectDB();
 
@@ -13,6 +14,7 @@ export default async function hire(req, res) {
   const duration = req.body.duration;
 
   if (method === "PUT") {
+    // agencyOnly(req, res, async () => {
     try {
       const agency = await Agency.findById(id);
       if (!agency) {
@@ -75,6 +77,7 @@ export default async function hire(req, res) {
         message: "Server error",
       });
     }
+  // });
   } else {
     return res.status(405).json({
       status: 405,
