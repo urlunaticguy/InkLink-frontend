@@ -200,7 +200,9 @@ function NavbarAgency(props) {
           >
             <ListItem
               onClick={() => {
-                navigate("");
+                navigate(
+                  "/frontend/screens/AgencyHomeScreen"
+                );
               }}
               sx={{ color: homeColor }}
               className={styles.xyz}

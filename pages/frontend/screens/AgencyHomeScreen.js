@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import DashboardHomeAgency from "../components/DashboardHomeAgency";
 
@@ -8,6 +8,7 @@ function AgencyHomeScreen() {
     localStorage.removeItem("isSignedIn");
     router.push("/");
   };
+
   return (
     <>
       {/* <div>Welcome to agency home page.</div>{" "}
